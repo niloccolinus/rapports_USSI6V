@@ -1,0 +1,136 @@
+% !TEX options=-synctex=-1
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{soul}
+
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm,
+}
+
+
+\usepackage{extensionCours}
+
+\title{TP1 - Algèbre Linéaire et Plan Complexe}
+\author{Groupe 2 \\* Colin, Henri, Leïla, Loïs}
+
+\begin{document}
+\maketitle
+
+\sectionExercice{Algèbre Linéaire}
+
+
+\begin{enumerate}
+    \item Résolvez le système linéaire suivant :
+\[
+\begin{cases}
+2x + 2y = 4,\\[1mm]
+3x - 8y  = -1 
+\end{cases}
+\]
+Réponse :
+\[
+\begin{cases}
+2x + 2y = 4,\\[1mm]
+3x - 8y  = -1 
+\end{cases}
+\Leftrightarrow 
+\begin{cases}
+2x + 2y = 4,\\[1mm]
+3x - 8y  = -1 
+\end{cases}
+\]
+\[
+\Leftrightarrow 
+\begin{cases}
+2x + 2y = 4,\\[1mm]
+3x - 8y  = -1 
+\end{cases}
+\]
+\[
+\Leftrightarrow 
+\begin{cases}
+x = 2 - y,\\[1mm]
+-11y = -7  
+\end{cases}
+\]
+\[
+\Leftrightarrow
+\boxed{
+\begin{cases}
+x = \frac{15}{11}, \\[1mm]
+y = \frac{7}{11}
+\end{cases}
+}
+\]\\
+
+
+    \item Dans \(\mathbb{R}^2\), considérez la base canonique \(\{e_1, e_2\}\) et une nouvelle base \(\{v_1, v_2\}\) définie par
+\[
+v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad
+v_2 = \begin{pmatrix} 1 \\ -1 \end{pmatrix}.
+\]
+Exprimez le vecteur 
+\[
+w = \begin{pmatrix} 2 \\ 3 \end{pmatrix}
+\]
+dans la nouvelle base.
+Réponse :
+\[
+\lambda_1 v_1 + \lambda_1 v_1 = \begin{pmatrix} 2 \\ 3 \end{pmatrix}
+\]
+\[
+\begin{cases}
+\lambda_1 + \lambda_2 = 3,\\[1mm]
+\lambda_1 - \lambda_2 = 2 
+\end{cases}
+\Leftrightarrow 
+\begin{cases}
+2 \lambda_1 = 5,\\[1mm]
+\lambda_1 - \lambda_2 = 2  
+\end{cases}
+\Leftrightarrow 
+\begin{cases}
+\lambda_1 = 5/2,\\[1mm]
+\lambda_2 = -1/2 
+\end{cases}
+\]\\
+\[
+\boxed{
+ w = (5/2) v_1 + (-1/2) v_1
+}
+\]\\
+
+
+    \item Calculer le produit scalaire des vecteurs $v_1$ et $v_2$ définis ci-dessus.
+
+Réponse :
+\[
+v_1 . v2 = 1 . 1 + 1 . (-1) \Rightarrow
+\boxed{v_1 . v2 = 0}
+\]\\
+
+
+    \item Calculer le déterminant de la matrice:
+\[
+v_1 = 
+    \begin{pmatrix} 
+        1 & 2 \\ 
+        2 & 3 
+    \end{pmatrix}
+\]
+
+Réponse :
+\[
+det(v_1) = 3 - (2 * 2) \Rightarrow
+\boxed{det(v_1) = -1}
+\]
+\end{enumerate}
+\end{document}
