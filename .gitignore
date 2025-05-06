@@ -1,1 +1,16 @@
 *.sublime-workspace
+
+# ignore all .log files
+*.log
+
+# ignore all .aux files
+*.aux
+
+# ignore all .out files
+*.out
+
+# ignore all .synctex.gz files
+*.synctex.gz
+
+# ignore all .pdf files
+*.pdf
