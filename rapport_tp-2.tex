@@ -1,0 +1,57 @@
+% !TEX options=-synctex=-1
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{soul}
+
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm,
+}
+
+
+\usepackage{extensionCours}
+
+\title{TP 2 - Géométrie Classique et Triangulation de Delaunay}
+\author{Groupe 2 \\* Colin, Henri, Leïla, Loïs}
+
+\begin{document}
+\maketitle
+
+\sectionExercice{Algèbre Linéaire}
+
+
+\begin{enumerate}
+   \item On définit le cercle $\mathcal{C}_1$ de diamètre le segment $[AB]$, montrer que le point $C$ appartient à $\mathcal{C}_1$, 
+
+Réponse :
+\newline
+   \item En utilisant le théorème de Pythagore montrer que le triangle $ABC$ est rectangle. 
+
+  Réponse :
+\newline
+   \item Soit $D$ le centre de $\mathcal{C}_1$, soit $\Delta$ la bissectrice de l'angle $\widehat{CDB}$, on note $E$ l'intersection entre $\mathcal{C}_1$ et $\Delta$. En déduire la longueur du segment $[DE]$. 
+
+Réponse :
+\newline
+   \item Soit $\mathcal{C}_2$ le cercle de centre $E$ et de rayon $[DE]$. Par définition $D$ est la première intersection entre $\mathcal{C}_2$ et $\Delta$, on note $F$ la seconde intersection entre $\mathcal{C}_2$ et $\Delta$. Donnez la longueur du segment $[DF]$. 
+
+Réponse :
+\newline
+   \item On note $d$ la droite formée par les points $[BE]$, soit $d'$ la droite définie comme l'unique droite parallèle à $d$ et passant par le point $F$. On note $G$ l'intersection entre la droite $d'$ et l'axe engendré par $\vec{e_1}$. En utilisant le théorème de Thalès, déterminez les coordonnées du point $G$. 
+
+  Réponse :
+\newline
+   \item Représenter la figure obtenue à partir des différentes constructions ci-dessus. Vous pouvez utiliser le package \href{https://www.overleaf.com/learn/latex/TikZ_package}{TikZ} qui permet de générer des figures vectorisées dans le style du LaTex
+\footnote{Vous pouvez vous aider de l'éditeur en ligne \href{https://www.mathcha.io/}{Mathcha} est un éditeur WYSIWYG qui permet de directement visualiser et de générer du code TikZ.}.  
+
+Réponse :
+\newline
+\end{enumerate}
+\end{document}
