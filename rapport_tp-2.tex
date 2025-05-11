@@ -1,0 +1,250 @@
+% !TEX options=-synctex=-1
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{soul}
+
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm,
+}
+
+
+\usepackage{extensionCours}
+
+\title{TP 2 - Géométrie Classique et Triangulation de Delaunay}
+\author{Groupe 2 \\* Colin, Henri, Leïla, Loïs}
+
+\begin{document}
+\maketitle
+
+\sectionExercice{Algèbre Linéaire}
+
+
+\begin{enumerate}
+   \item On définit le cercle $\mathcal{C}_1$ de diamètre le segment $[AB]$, montrer que le point $C$ appartient à $\mathcal{C}_1$, 
+
+Réponse :
+
+  Le cercle $\mathcal{C}_1$ a pour diamètre le segment $[AB]$. Soit $D$ le centre de ce cercle est le milieu de $[AB]$, donc $D = \begin{pmatrix}2 & 0\end{pmatrix}$.
+
+  Donc le rayon du cercle $\mathcal{C}_1$ est $2$.
+
+  Calculons la distance entre $C$ et $D$ :
+
+  \[
+  \text{Distance}(C, D) = \sqrt{(2-2)^2 + (2-0)^2} = \sqrt{0 + 4} = \sqrt{4} = 2
+  \]
+  \[
+\boxed{
+  \text{Distance}(C, D) = 2}
+  \]
+
+  Cette distance étant égale au rayon, alors $C$ appartient à $\mathcal{C}_1$.
+\newline
+   \item En utilisant le théorème de Pythagore montrer que le triangle $ABC$ est rectangle. 
+
+  Réponse :
+
+  Afin d'utilser le théorème de Pythagore, calculons les longeurs des côtés du triangle $ABC$:
+
+  \begin{itemize}
+    	\item $AB = \sqrt{(4-0)^2 + (0-0)^2} = 4$
+    	\item $AC = \sqrt{(2-0)^2 + (2-0)^2} = \sqrt{4 + 4} = \sqrt{8} = 2\sqrt{2}$
+    	\item $BC = \sqrt{(2-4)^2 + (2-0)^2} = \sqrt{4 + 4} = \sqrt{8} = 2\sqrt{2}$
+  \end{itemize}
+
+  Vérifions ensuite l'égalité suivante :
+  \[
+  AB^2 = AC^2 + BC^2 \implies 4^2 = (2\sqrt{2})^2 + (2\sqrt{2})^2 \implies 16 = 8 + 8 \implies 16 = 16
+  \]
+  \[
+  \boxed{
+  AB^2 = AC^2 + BC^2
+  }
+  \]
+
+  Puisque l'égalité est vérifiée, alors d'après le théorème de Pythagore le triangle $ABC$ est rectangle en $C$.
+\newpage
+   \item Soit $D$ le centre de $\mathcal{C}_1$, soit $\Delta$ la bissectrice de l'angle $\widehat{CDB}$, on note $E$ l'intersection entre $\mathcal{C}_1$ et $\Delta$. En déduire la longueur du segment $[DE]$. 
+
+Réponse :
+
+  Pour commencer, déterminons les coordonnées du point $E$.
+
+  La bissectrice $\Delta$ de l'angle $\widehat{CDB}$ est la droite qui passe par $D$ et qui fait un angle de $45^\circ$ avec l'axe des abscisses car CD est la bissectrice de $\widehat{ACB}$ donc $\widehat{CDB}$ est un angle rectangle.
+
+  L'équation de la droite $\Delta$ est donc $y = x - 2$.
+
+  Le point $E$ est l'intersection entre $\mathcal{C}_1$ et $\Delta$. L'équation du cercle $\mathcal{C}_1$ est :
+
+  \[
+  (x-D_x)^2 + (y-D_y)^2 = 4
+  \]
+  \[
+  (x-2)^2 + y^2 = 4
+  \]
+
+  En injectant l'équation de $\Delta$ dans l'équation du cercle $\mathcal{C}_1$, nous obtenons :
+
+  \[
+  (x-2)^2 + (x-2)^2 = 4 \implies 2(x-2)^2 = 4 \implies (x-2)^2 = 2 \implies x-2 = \pm \sqrt{2} \implies x = 2 \pm \sqrt{2}
+  \]
+  \[
+  \boxed{
+   x = 2 \pm \sqrt{2}
+  }
+  \]
+
+  Les coordonnées de $E$ sont donc $(2 + \sqrt{2}, \sqrt{2})$ ou $(2 - \sqrt{2}, -\sqrt{2})$. Nous choisissons $E = (2 + \sqrt{2}, \sqrt{2})$.
+
+  Puis calculons la distance $DE$ :
+
+  \[
+  \text{Distance}(D, E) = \sqrt{(2 + \sqrt{2} - 2)^2 + (\sqrt{2} - 0)^2} = \sqrt{(\sqrt{2})^2 + (\sqrt{2})^2} = \sqrt{2 + 2} = \sqrt{4} = 2
+  \]
+  \[
+  \boxed{
+  \text{Distance}(D, E) = 2
+  }
+  \]
+\newline
+   \item Soit $\mathcal{C}_2$ le cercle de centre $E$ et de rayon $[DE]$. Par définition $D$ est la première intersection entre $\mathcal{C}_2$ et $\Delta$, on note $F$ la seconde intersection entre $\mathcal{C}_2$ et $\Delta$. Donnez la longueur du segment $[DF]$. 
+
+Réponse :
+
+  Le cercle $\mathcal{C}_2$ a pour centre $E = \left(2 + \sqrt{2}, \sqrt{2} \right)$ et pour rayon $[DE] = 2$. Le point $F$ est la seconde intersection entre le cercle $\mathcal{C}_2$ et la bissectrice $\Delta$ d'équation $y = x - 2$.
+
+  \medskip
+
+  En injectant cette équation dans celle du cercle :
+  \[
+  (x - (2 + \sqrt{2}))^2 + (y - \sqrt{2})^2 = 4,
+  \]
+  on obtient :
+  \[
+  (x - 2 - \sqrt{2})^2 + (x - 2 - \sqrt{2})^2 = 4.
+  \]
+  \[
+  2(x - 2 - \sqrt{2})^2 = 4 \Rightarrow (x - 2 - \sqrt{2})^2 = 2 \Rightarrow x - 2 - \sqrt{2} = \pm \sqrt{2}.
+  \]
+
+  Les solutions sont :
+  \[
+  \boxed{x = 2,}\quad \text{et} \quad \boxed{x = 2 + 2\sqrt{2}}.
+  \]
+
+  Le cas $x = 2$ correspond au point $D$, donc :
+  \[
+  \boxed{
+  F = \left(2 + 2\sqrt{2},\ 2\sqrt{2} \right).
+  }
+  \]
+
+  Calculons la distance $DF$ :
+  \[
+  \text{Distance}(D, F) = \sqrt{(2 + 2\sqrt{2} - 2)^2 + (2\sqrt{2} - 0)^2} = \sqrt{(2\sqrt{2})^2 + (2\sqrt{2})^2} = \sqrt{8 + 8} = \sqrt{16} = 4.
+  \]
+  \[
+  \boxed{
+  \text{Distance}(D, F) = 4
+  }
+  \]
+\newline
+   \item On note $d$ la droite formée par les points $[BE]$, soit $d'$ la droite définie comme l'unique droite parallèle à $d$ et passant par le point $F$. On note $G$ l'intersection entre la droite $d'$ et l'axe engendré par $\vec{e_1}$. En utilisant le théorème de Thalès, déterminez les coordonnées du point $G$. 
+
+  Réponse :
+
+La droite \( d \) passe par \( B \) et \( E \). Sa pente est :
+\[
+m = \frac{y_E - y_B}{x_E - x_B} = \frac{\sqrt{2}}{(2 + \sqrt{2}) - 4} = \frac{\sqrt{2}}{-2 + \sqrt{2}} = -\sqrt{2} - 1
+\]
+
+La droite \( d' \) est parallèle à \( d \) et passe par \( F \). Elle a donc la même pente, soit :
+\[
+y - y_F = m(x - x_F) \quad \text{avec } F = (2 + 2\sqrt{2}, 2\sqrt{2})
+\]
+
+On cherche les coordonnées de \( G \), point d'intersection de \( d' \) avec l'axe des abscisses \( y = 0 \).
+
+On remplace \( y = 0 \) dans l'équation de la droite \( d' \) :
+\begin{align*}
+0 - 2\sqrt{2} &= (-\sqrt{2} - 1)(x - (2 + 2\sqrt{2})) \\
+\frac{-2\sqrt{2}}{-\sqrt{2} - 1} &= x - (2 + 2\sqrt{2})
+\end{align*}
+
+On rationalise :
+\[
+\frac{-2\sqrt{2}}{-\sqrt{2} - 1} = \frac{2\sqrt{2}}{\sqrt{2} + 1} = \frac{2\sqrt{2}(\sqrt{2} - 1)}{(\sqrt{2} + 1)(\sqrt{2} - 1)} = \frac{2\sqrt{2}(\sqrt{2} - 1)}{1} = 2(2 - \sqrt{2}) = 4 - 2\sqrt{2}
+\]
+
+Puis :
+\[
+x = (4 - 2\sqrt{2}) + (2 + 2\sqrt{2}) = 6
+\]
+
+\[
+\boxed{G = (6,\ 0)}
+\]
+\newpage
+   \item Représenter la figure obtenue à partir des différentes constructions ci-dessus. Vous pouvez utiliser le package \href{https://www.overleaf.com/learn/latex/TikZ_package}{TikZ} qui permet de générer des figures vectorisées dans le style du LaTex
+
+Réponse :
+\newline
+\begin{tikzpicture}[scale=1.5]
+  % Coordonnées intermédiaires
+  \def\sqrttwo{1.4142}
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (4,0);
+  \coordinate (C) at (2,2);
+  \coordinate (D) at (2,0);
+  \coordinate (E) at ({2 + \sqrttwo}, {\sqrttwo});
+  \coordinate (F) at ({2 + 2*\sqrttwo}, {2*\sqrttwo});
+
+  % Cercle C1 de diamètre AB
+  \draw[dashed, gray] (D) circle (2);
+
+  % Cercle C2 de centre E, rayon DE = 2
+  \draw[dashed, gray] (E) circle (2);
+
+  % Triangle ABC
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+
+  % Segments clés
+  \draw[blue] (D) -- (C);
+  \draw[blue] (D) -- (B);
+  \draw[blue] (D) -- (E); % bissectrice
+  \draw[blue] (D) -- (F);
+
+  % Droite d = (BE)
+  \draw[red] (B) -- (E);
+
+  % Calcul de la pente de la droite BE
+  \pgfmathsetmacro{\slopeBE}{(\sqrttwo - 0)/(2 + \sqrttwo - 4)}
+
+  % Intersection avec l'axe x => point G
+  \pgfmathsetmacro{\xG}{2 + 2*\sqrttwo - (2*\sqrttwo)/\slopeBE}
+  \coordinate (G) at (\xG, 0);
+
+% Droite d' = (FG)
+  \draw[red] (F) -- (G);
+
+  % Axes
+  \draw[->, gray] (-1,0) -- (7,0) node[right] {$x$};
+  \draw[->, gray] (0,-1) -- (0,5) node[above] {$y$};
+
+  % Points
+  \foreach \point/\name in {A/A, B/B, C/C, D/D, E/E, F/F, G/G}
+    \filldraw (\point) circle (2pt) node[above right] {\name};
+
+\end{tikzpicture}
+\newline
+\end{enumerate}
+\end{document}
