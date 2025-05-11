@@ -247,4 +247,75 @@ Réponse :
 \end{tikzpicture}
 \newline
 \end{enumerate}
+
+\sectionExercice{Implémentation d’une Classe Triangle}
+
+\subsection*{Objectif}
+
+L’objectif de cet exercice est d'implémenter une classe en Python permettant de modéliser un triangle donné par ses trois sommets. Cette classe doit permettre de calculer diverses propriétés géométriques du triangle, telles que la longueur des côtés, l'aire, le type de triangle (rectangulaire ou non), et d'autres caractéristiques comme le cercle circonscrit.
+
+\subsection*{Implémentation}
+
+La classe \texttt{Triangle} que nous avons implémentée regroupe plusieurs méthodes utiles :
+\begin{itemize}
+    \item calcul des longueurs des côtés,
+    \item vérification si le triangle est rectangle,
+    \item calcul de l'aire (via la formule de Héron ou par base/hauteur pour le cas rectangle),
+    \item calcul du cercle circonscrit (centre, rayon),
+    \item vérification si un point donné appartient au cercle circonscrit.
+\end{itemize}
+
+Cette nouvelle classe a été ajoutée à notre bibliothèque Mathy dans \texttt{geometry\_engine\_librairie}.
+
+Les différentes questions posées dans l'exercice 2 ont été modélisées et vérifiées dans un script Python qui utilise cette classe ainsi que la classe \texttt{Vector2} pour les constructions géométriques.
+
+Enfin, le module \texttt{Renderer} a permis de produire une visualisation dynamique contenant :
+\begin{itemize}
+    \item le triangle $ABC$ et ses sommets nommés,
+    \item les cercles $\mathcal{C}_1$ et $\mathcal{C}_2$,
+    \item la bissectrice de l’angle $\widehat{CDB}$ prolongée (droite $\Delta$),
+    \item les points $D$, $E$, $F$, $G$ et les segments clés de construction.
+\end{itemize}
+
+\subsection*{Utilisation}
+
+Le code de résolution des exercices est contenu dans le fichier \texttt{tp\_2\_exos.py}, situé dans le dossier \texttt{geometry\_engine\_executables}.
+
+Pour exécuter ce programme dans \textbf{Sublime Text}, presser \texttt{Ctrl + Shift + B}, puis sélectionner la commande \texttt{solve\_exercices}.
+
+\subsection*{Conclusion}
+
+Cette approche nous a permis d’assurer la validité des constructions géométriques, à la fois par calculs symboliques et par vérification graphique.
+
+
+\sectionExercice{Triangulation de Delaunay}
+
+\subsection*{Objectif}
+
+L'objectif de cet exercice est de mettre en œuvre l'algorithme de Bowyer-Watson pour réaliser la triangulation de Delaunay d’un nuage de points aléatoires. L'algorithme repose sur la propriété suivante : pour chaque triangle de la triangulation, le cercle circonscrit ne doit contenir aucun autre point.
+
+\subsection*{Implémentation}
+
+L'algorithme de Bowyer-Watson a été implémenté dans un fichier Python spécifique, permettant de générer la triangulation de Delaunay pour un ensemble de points donnés. 
+
+Les étapes principales du programme sont les suivantes :
+
+\begin{enumerate}
+    \item Génération d’un \textit{super-triangle} initial contenant tous les points.
+    \item Pour chaque point :
+    \begin{itemize}
+        \item Identification des triangles dont le cercle circonscrit contient ce point.
+        \item Suppression de ces triangles de la triangulation.
+        \item Détection des arêtes de la cavité (en ne conservant que celles qui ne sont pas partagées deux fois).
+        \item Construction de nouveaux triangles en reliant le point courant aux arêtes du bord.
+    \end{itemize}
+    \item Suppression finale des triangles contenant des sommets du super-triangle.
+\end{enumerate}
+
+\subsection*{Utilisation}
+
+Cette implémentation est incluse dans le fichier \texttt{tp\_2\_3\_delaunay.py}, qui se trouve dans le dossier \texttt{geometry\_engine\_executables}.
+
+Pour exécuter ce programme dans \textbf{Sublime Text}, presser \texttt{Ctrl + Shift + B}, puis sélectionner la commande \texttt{run\_delaunay\_viewer}.
+
 \end{document}
