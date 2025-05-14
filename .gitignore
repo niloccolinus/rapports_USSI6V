@@ -9,8 +9,9 @@
 # ignore all .out files
 *.out
 
-# ignore all .synctex.gz files
+# ignore all .synctex files
 *.synctex.gz
+*.synctex
 
 # ignore all .pdf files
 *.pdf
