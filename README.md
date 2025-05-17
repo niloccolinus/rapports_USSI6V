@@ -13,3 +13,17 @@ Le nom des fichiers suit la convention suivante : `rapport_tp-<numéro>.tex`.
 - `rapport_tp-1.tex` : Rapport du TP 1 – algèbre linéaire et plan complexe.
 - `rapport_tp-2.tex` : Rapport du TP 2 – géométrie classique et triangulation de Delaunay.
 - `rapport_tp-3.tex` : Rapport du TP 3 – similitudes.
+
+## Comment lancer les fichiers LaTeX
+
+### Avec Sublime Text et Sumatra PDF
+
+- Ouvrez le projet dans Sublime Text.
+- Appuyez sur `Ctrl` + `Maj` + `B` (Windows/Linux) ou `Cmd` + `Maj` + `B` (Mac) pour ouvrir les commandes de compilation.
+- Sélectionnez `LaTeX - Basic Builder` ; le rapport s'ouvrira dans Sumatra PDF.
+
+### Avec TeXworks
+
+- Ouvrez le fichier .tex avec TeXworks.
+- Sélectionnez `pdfLaTeX` dans le menu déroulant en haut à gauche de la fenêtre TeXworks (sous l'onglet édition).
+- Appuyez sur le bouton `composition` (triangle vert en haut à gauche de la fenêtre TeXworks).
