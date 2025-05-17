@@ -176,7 +176,7 @@ C =
   \item Implémenter une classe vecteur et matrice adaptées pour les coordonnées homogènes.
 
 Pour manipuler les coordonnées homogènes, nous avons implémenté une classe \texttt{Vector3} représentant un vecteur à trois
-composantes, utilisé pour représenter les points en coordonnées homogènes. Cette classe fournit une méthode \texttt{multiply\_by\_matrix} permettant de transformer un vecteur par une matrice 3×3.
+composantes, et sa sous-classe \texttt{HomogeneousVector3} utilisée pour représenter les points en coordonnées homogènes. La classe \texttt{Vector3} fournit une méthode \texttt{multiply\_by\_matrix} permettant de transformer un vecteur par une matrice 3×3.
 
 Nous avons ensuite défini une classe \texttt{Matrix3x3}, représentant une matrice générique en coordonnées homogènes. Elle inclut une méthode \texttt{prod} pour effectuer le produit matriciel. 
 
