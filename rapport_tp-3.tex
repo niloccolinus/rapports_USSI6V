@@ -27,21 +27,21 @@
 \sectionExercice{Théorie- Un bug dans Unity}
 Vous êtes développeur d'un jeu sous Unity. Malheureusement, comme à son habitude le logiciel est défectueux et l'éditeur ne fonctionne plus du tout, de même que les fonctions qui permettent de définir la position et l'orientation manuellement. 
 \begin{enumerate}
-    \item Soit un personnage modélisé par un sprite instancié à l'origine du moteur, l'utilisateur souhaite le déplacer à la position $\begin{pmatrix} 1 & 2\end{pmatrix}$, donner la matrice de changement de coordonnée à appliquer au personnage pour lui donner sa nouvelle position.\label{exo:1.1}\newline \newline
+    \item \emph{Soit un personnage modélisé par un sprite instancié à l'origine du moteur, l'utilisateur souhaite le déplacer à la position $\begin{pmatrix} 1 & 2\end{pmatrix}$, donner la matrice de changement de coordonnée à appliquer au personnage pour lui donner sa nouvelle position.}\label{exo:1.1}\newline \newline
 Réponse :
 
 On cherche la matrice de transpositions correspondant aux coordonnées homogènes mondes du personnage et nommée $T_p$ : 
 
-\[
+ \begin{equation}
 T_p = 
 \begin{pmatrix}
 1 & 0 & a \\
 0 & 1 & b \\
 0 & 0 & 1
-\end{pmatrix}\]
+\end{pmatrix} \end{equation}
 
 Tel que : 
-\[\begin{pmatrix}
+ \begin{equation}\begin{pmatrix}
 1 & 0 & a \\
 0 & 1 & b \\
 0 & 0 & 1
@@ -56,72 +56,72 @@ Tel que :
 1 \\
 2 \\
 1
-\end{pmatrix}\]
+\end{pmatrix} \end{equation}
 
 Donc la matrice de transposition $T_p$ du personnage est égale à :
-\[\boxed{
+ \begin{equation}\boxed{
 T_p = 
 \begin{pmatrix}
 1 & 0 & 1 \\
 0 & 1 & 2 \\
 0 & 0 & 1
-\end{pmatrix}}\] \newline
+\end{pmatrix}} \end{equation} \newline
 
-    \item L'utilisateur souhaite également faire tourner le personnage de \(\frac{\pi}{4}\) dans le sens trigonométrique autour de l'origine. Donnez la matrice de rotation correspondante en coordonnées homogènes. \label{exo:1.2}\newline \newline
+    \item \emph{L'utilisateur souhaite également faire tourner le personnage de \(\frac{\pi}{4}\) dans le sens trigonométrique autour de l'origine. Donnez la matrice de rotation correspondante en coordonnées homogènes.} \label{exo:1.2}\newline \newline
 Réponse :
 
 On cherche la matrice de rotations correspondant aux coordonnées homogènes mondes du personnage et nommée $R_p$ : 
-\[
+ \begin{equation}
 R_p = 
 \begin{pmatrix}
 \cos(\theta) & -\sin(\theta) & 0 \\
 \sin(\theta) & \cos(\theta) & 0 \\
 0 & 0 & 1
-\end{pmatrix}\]
+\end{pmatrix} \end{equation}
 
 Ici \(\theta\) = \(\frac{\pi}{4}\) donc : \newline
-\[\boxed{
+ \begin{equation}\boxed{
 R_p = 
 \begin{pmatrix}
 \frac{\sqrt{2}}{2} & \frac{-\sqrt{2}}{2} & 0 \\
 \frac{\sqrt{2}}{2} & \frac{\sqrt{2}}{2} & 0 \\
 0 & 0 & 1
-\end{pmatrix}}\] \newline
-    \item On souhaite doubler la taille du personnage. Donnez la matrice d'homothétie correspondante.\newline \newline
+\end{pmatrix}} \end{equation} \newline
+    \item \emph{On souhaite doubler la taille du personnage. Donnez la matrice d'homothétie correspondante.}\newline \newline
 Réponse :
 
 On cherche la matrice d'homotétie correspondant aux coordonnées homogènes mondes du personnage et nommée $H_p$ : 
-\[
+ \begin{equation}
 H_p = 
 \begin{pmatrix}
 k & 0 & 0 \\
 0 & k & 0 \\
 0 & 0 & 1
-\end{pmatrix}\]
+\end{pmatrix} \end{equation}
 
 Ici $k$ = 2 donc : 
-\[\boxed{
+ \begin{equation}\boxed{
 H_p = 
 \begin{pmatrix}
 2 & 0 & 0 \\
 0 & 2 & 0 \\
 0 & 0 & 1
-\end{pmatrix}}\] \newline
+\end{pmatrix}} \end{equation} \newline
 
-    \item Considérez l'épée, qui doit être placée dans le repère local du personnage à la position $\begin{pmatrix} 0.5 & -0.5 \end{pmatrix}$. De plus l'épée est tournée de $\pi$ par rapport au personnage. Définissez la matrice de transformation locale à appliquer à l'épée par rapport au repère du personnage.\newline \newline
+    \item \emph{Considérez l'épée, qui doit être placée dans le repère local du personnage à la position $\begin{pmatrix} 0.5 & -0.5 \end{pmatrix}$. De plus l'épée est tournée de $\pi$ par rapport au personnage. Définissez la matrice de transformation locale à appliquer à l'épée par rapport au repère du personnage.}\newline \newline
 Réponse :
 
 On cherche les matrices de translation $T_e$ et de rotation $R_e$ correspondant aux coordonnées homogènes de l'épée par rapport au personnage : 
-\[
+ \begin{equation}
 H_p = 
 \begin{pmatrix}
 k.x & 0 & 0 \\
 0 & k.y & 0 \\
 0 & 0 & 1
-\end{pmatrix}\]
+\end{pmatrix} \end{equation}
 
 D'après les exercices \ref{exo:1.1} et \ref{exo:1.2} : \newline
-\[
+ \begin{equation}
 T_e = 
 \begin{pmatrix}
 1 & 0 & 0,5 \\
@@ -134,37 +134,37 @@ R_e =
 -1 & 0 & 0 \\
 0 & -1 & 0 \\
 0 & 0 & 1
-\end{pmatrix}\]
+\end{pmatrix} \end{equation}
 
 On obtient par produit $T_e R_e$ la matrice de transformation locale de l'épée $TR_e$ par rapport au personnage : 
-\[\boxed{
+ \begin{equation}\boxed{
 TR_e = 
 \begin{pmatrix}
 -1 & 0 & 0,5 \\
 0 & -1 & 0,5 \\
 0 & 0 & 1
-\end{pmatrix}}\]
+\end{pmatrix}} \end{equation}
 
-    \item Donner les coordonnées mondes de l'épée.\newline \newline
+    \item \emph{Donner les coordonnées mondes de l'épée.}\newline \newline
 Réponse :
 
 Pour obtenir ces coordonnées, on doit d'abord repèrer les coordonnées du personnage dans le monde. i.e sa matrice de transformation $TRH_p$ dans le monde qui est le produit $T_p R_p H_p$ :
-\[\boxed{
+ \begin{equation}\boxed{
 TRH_p = 
 \begin{pmatrix}
 \sqrt{2} & -\sqrt{2} & 1 \\
 \sqrt{2} & \sqrt{2} & 2 \\
 0 & 0 & 1
-\end{pmatrix}}\]
+\end{pmatrix}} \end{equation}
 
 Puis par multiplication avec la matrice $TR_e$ on obtient la matrice C des coordonnées mondes de l'épée qui est :
-\[\boxed{
+ \begin{equation}\boxed{
 C = 
 \begin{pmatrix}
 -\sqrt{2} & \sqrt{2} & 1+\sqrt{2} \\
 -\sqrt{2} & -\sqrt{2} & 2 \\
 0 & 0 & 1
-\end{pmatrix}}\]
+\end{pmatrix}} \end{equation}
 
 \end{enumerate}
 
@@ -173,16 +173,16 @@ C =
 \sectionExercice{Implémentation des similitudes}
 \label{exo:impl}
 \begin{enumerate}
-  \item Implémenter une classe vecteur et matrice adaptées pour les coordonnées homogènes.
+  \item \emph{Implémenter une classe vecteur et matrice adaptées pour les coordonnées homogènes.}
 
 Pour manipuler les coordonnées homogènes, nous avons implémenté une classe \texttt{Vector3} représentant un vecteur à trois
 composantes, et sa sous-classe \texttt{HomogeneousVector3} utilisée pour représenter les points en coordonnées homogènes. La classe \texttt{Vector3} fournit une méthode \texttt{multiply\_by\_matrix} permettant de transformer un vecteur par une matrice 3×3.
 
 Nous avons ensuite défini une classe \texttt{Matrix3x3}, représentant une matrice générique en coordonnées homogènes. Elle inclut une méthode \texttt{prod} pour effectuer le produit matriciel. 
 
-Ces nouvelles classes ont été ajoutées à notre bibliothèque Mathy dans \texttt{geometry\_engine\_librairie}.
+Ces nouvelles classes ont été ajoutées à notre bibliothèque Mathy dans \newline \texttt{geometry\_engine\_librairie}.
 
-  \item Implémenter les similitudes et des fonctions pour les manipuler.
+  \item \emph{Implémenter les similitudes et des fonctions pour les manipuler.}
 
 Trois classes filles héritent de la classe \texttt{Matrix3x3} :
 \begin{itemize}
@@ -202,8 +202,8 @@ Pour exécuter ce programme dans \textbf{Sublime Text}, presser \texttt{Ctrl + S
 
 \sectionExercice{Orbite}
 
-Soit $\mathcal{C}$ un cercle de rayon $r$ et de centre $M$ situé à une distance de $d$ de l'origine du monde. Soit $\mathcal{C}_1$ et $\mathcal{C}_2$ deux cercles de rayon $r_1$ et $r_2$ et placé à une distance $d_1$ et $d_2$ de $\mathcal{C}$. Ces deux cercles orbitent autour de $\mathcal{C}$ avec respectivement, une période de $t_1$ et $t_2$.
-En utilisant les implémentations de l'exercice \ref{exo:impl}, simulez l'évolution de la trajectoire de ces trois cercles.
+Soit $\mathcal{C}$ un cercle de rayon $r$ et de centre $M$ situé à une distance de $d$ de l'origine du monde. Soit $\mathcal{C}_1$ et $\mathcal{C}_2$ deux cercles de rayon $r_1$ et $r_2$ et placé à une distance $d_1$ et $d_2$ de $\mathcal{C}$. Ces deux cercles orbitent autour de $\mathcal{C}$ avec respectivement, une période de $t_1$ et $t_2$.\newline \newline
+\emph{En utilisant les implémentations de l'exercice \ref{exo:impl}, simulez l'évolution de la trajectoire de ces trois cercles.}
 
 
 \end{document}
