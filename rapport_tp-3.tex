@@ -175,8 +175,28 @@ C =
 \begin{enumerate}
   \item Implémenter une classe vecteur et matrice adaptées pour les coordonnées homogènes.
 
+Pour manipuler les coordonnées homogènes, nous avons implémenté une classe \texttt{Vector3} représentant un vecteur à trois
+composantes, utilisé pour représenter les points en coordonnées homogènes. Cette classe fournit une méthode \texttt{multiply\_by\_matrix} permettant de transformer un vecteur par une matrice 3×3.
+
+Nous avons ensuite défini une classe \texttt{Matrix3x3}, représentant une matrice générique en coordonnées homogènes. Elle inclut une méthode \texttt{prod} pour effectuer le produit matriciel. 
+
+Ces nouvelles classes ont été ajoutées à notre bibliothèque Mathy dans \texttt{geometry\_engine\_librairie}.
+
   \item Implémenter les similitudes et des fonctions pour les manipuler.
+
+Trois classes filles héritent de la classe \texttt{Matrix3x3} :
+\begin{itemize}
+\item \texttt{TranslationMatrix3x3}, qui crée une matrice de translation à partir de deux coordonnées $\begin{pmatrix} x & y \end{pmatrix}$,
+\item \texttt{RotationMatrix3x3}, qui génère une matrice de rotation pour un angle donné en degrés,
+\item \texttt{HomothetyMatrix3x3}, qui représente une homothétie (mise à l’échelle) selon un facteur donné.
+\end{itemize}
+
+Pour valider notre implémentation, nous avons repris l’énoncé de l’exercice 1 en Python. Chaque transformation (translation, rotation, homothétie) est d’abord instanciée séparément, puis combinée pour former une transformation globale du personnage. Une transformation locale est également définie pour l’épée, puis combinée avec celle du personnage. Enfin, pour obtenir les coordonnées mondes de l’épée, nous appliquons la transformation complète à l’origine du repère local de l’épée, représentée par le vecteur homogène $\begin{pmatrix} 0 & 0 & 1 \end{pmatrix}$.
 \end{enumerate}
+
+Le code de résolution de cet exercice est contenu dans le fichier \texttt{tp\_3\_exo1.py}, situé dans le dossier \texttt{geometry\_engine\_executables}.
+
+Pour exécuter ce programme dans \textbf{Sublime Text}, presser \texttt{Ctrl + Shift + B}, puis sélectionner la commande \texttt{tp\_3\_exo1}.
 
 \newpage
 
@@ -184,5 +204,6 @@ C =
 
 Soit $\mathcal{C}$ un cercle de rayon $r$ et de centre $M$ situé à une distance de $d$ de l'origine du monde. Soit $\mathcal{C}_1$ et $\mathcal{C}_2$ deux cercles de rayon $r_1$ et $r_2$ et placé à une distance $d_1$ et $d_2$ de $\mathcal{C}$. Ces deux cercles orbitent autour de $\mathcal{C}$ avec respectivement, une période de $t_1$ et $t_2$.
 En utilisant les implémentations de l'exercice \ref{exo:impl}, simulez l'évolution de la trajectoire de ces trois cercles.
+
 
 \end{document}
