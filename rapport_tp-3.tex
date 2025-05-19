@@ -8,6 +8,7 @@
 \usepackage{geometry}
 \usepackage{soul}
 \usepackage{graphicx} % pour inclure des images
+\usepackage{animate}
 
 \geometry{
   a4paper,
@@ -206,9 +207,57 @@ Pour exécuter ce programme dans \textbf{Sublime Text}, presser \texttt{Ctrl + S
 \newpage
 
 \sectionExercice{Orbite}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
 
-Soit $\mathcal{C}$ un cercle de rayon $r$ et de centre $M$ situé à une distance de $d$ de l'origine du monde. Soit $\mathcal{C}_1$ et $\mathcal{C}_2$ deux cercles de rayon $r_1$ et $r_2$ et placé à une distance $d_1$ et $d_2$ de $\mathcal{C}$. Ces deux cercles orbitent autour de $\mathcal{C}$ avec respectivement, une période de $t_1$ et $t_2$.\newline \newline
-\emph{En utilisant les implémentations de l'exercice \ref{exo:impl}, simulez l'évolution de la trajectoire de ces trois cercles.}
+Soit $\mathcal{C}$ un cercle de rayon $r$ et de centre $M$ situé à une distance $d$ de l'origine du monde. Soit $\mathcal{C}_1$ et $\mathcal{C}_2$ deux cercles de rayon $r_1$ et $r_2$ et placés à une distance $d_1$ et $d_2$ de $\mathcal{C}$. Ces deux cercles orbitent autour de $\mathcal{C}$ avec respectivement, une période de $t_1$ et $t_2$.
 
+\vspace{0.5cm}
+
+\emph{En utilisant les implémentations de l'exercice précédent, simulez l'évolution de la trajectoire de ces trois cercles.}
+
+\begin{figure}[h]
+    \centering
+    \animategraphics[autoplay, loop, width=200px]{30}{illustrations/orbite-}{0}{79}
+    \caption{Simulation de l'évolution des trajectoires des cercles $\mathcal{C}_1$, $\mathcal{C}_2$ et $\mathcal{C}$.}
+    \label{fig:orbite}
+\end{figure}
+
+En se basant sur les classes implémentées dans l'exercice précédent et le moteur de rendu de la librairie pygame, 
+nous avons créé une simulation animée de l'évolution en temps réel des trajectoires des cercles $\mathcal{C}_1$, $\mathcal{C}_2$ et $\mathcal{C}$.
+
+Les valeurs numériques suivantes sont définies pour configurer la simulation :
+
+\begin{itemize}
+    \item Un rayon ($r$, $r_1$, $r_2$) pour chaque cercle,
+    \item Une distance ($D$, $D_1$, $D_2$) qui représente la distance entre le centre de chaque cercle et l'origine du monde (pour $\mathcal{C}$) ou entre le centre de $\mathcal{C}$ et les cercles $\mathcal{C}_1$ et $\mathcal{C}_2$,
+    \item Une vélocité ($\omega$, $\omega_1$, $\omega_2$) pour chaque cercle, qui détermine la vitesse de rotation, calculée par la formule $\omega = \frac{360}{T}$, où $T$ est la période de rotation exprimée en secondes,
+    \item Une période ($T$, $T_1$, $T_2$) pour chacun des cercles, qui détermine la durée d'une rotation complète,
+    \item Un angle de rotation ($\theta$, $\theta_1$, $\theta_2$), exprimé en degrés, pour chaque cercle, qui est calculé à chaque itération de la simulation en fonction de la vélocité et du temps écoulé $dt$.
+\end{itemize}
+
+Le cercle $\mathcal{C}$ tourne autour de l'origine, tandis que les cercles $\mathcal{C}_1$ et $\mathcal{C}_2$ tournent en orbite autour de $\mathcal{C}$.
+
+La position de chaque cercle est mise à jour à chaque itération de la simulation (chaque frame) en appliquant la matrice de rotation correspondante à l'angle de rotation calculé.
+
+Cette rotation est effectuée par la méthode \texttt{rotate-point} du script de l'exercice. 
+Elle applique à un point donné une rotation par rapport à un angle et une origine spécifiés. La méthode procède ainsi :
+
+\begin{itemize}
+    \item Elle applique une translation pour déplacer le point donné à l'origine du repère.
+    \item Elle applique la matrice de rotation à ce point pour obtenir la nouvelle position du point dans le repère local.
+    \item Elle applique une translation inverse pour ramener le point à sa position d'origine.
+\end{itemize}
+
+Les méthodes \texttt{RotationMatrix3x3} et \texttt{TranslationMatrix3x3} sont utilisées pour créer les matrices de rotation et de translation respectivement. 
+Ces matrices sont ensuite multipliées par le vecteur homogène représentant la position du point donné.
+
+L'homogénéité des coordonnées permet de manipuler les points en 2D dans un espace 3D, par une troisième coordonnée égale à 1.
+
+Le module \texttt{Renderer}, qui utilise la librairie pygame, est responsable de l'affichage des cercles et de la mise à jour de leur position, en redessinant chaque cercle à leur nouvelle position à chaque itération.
+
+Le code de résolution de cet exercice est contenu dans le fichier \texttt{tp\_3\_exo3.py}, situé dans le dossier \texttt{geometry\_engine\_executables}.
+
+Pour exécuter ce programme dans \textbf{Sublime Text}, presser \texttt{Ctrl + Shift + B}, puis sélectionner la commande \texttt{tp\_3\_exo3}.
 
 \end{document}
