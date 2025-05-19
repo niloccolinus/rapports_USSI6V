@@ -240,13 +240,17 @@ Le cercle $\mathcal{C}$ tourne autour de l'origine, tandis que les cercles $\mat
 
 La position de chaque cercle est mise à jour à chaque itération de la simulation (chaque frame) en appliquant la matrice de rotation correspondante à l'angle de rotation calculé.
 
-Cette rotation est effectuée par la fonction \texttt{rotate-point} du script de l'exercice. 
-Elle applique à un point donné une rotation par rapport à un angle et une origine spécifiés. La fonction procède ainsi :
+\pagebreak
+
+Cette rotation est effectuée par la fonction \texttt{rotate\_point} du script de l'exercice. 
+Elle applique à un point donné en coordonnées locales une rotation par rapport à un angle et une origine spécifiés. La fonction procède ainsi :
 
 \begin{itemize}
-    \item Elle applique une translation pour déplacer le point donné à l'origine du repère.
-    \item Elle applique la matrice de rotation à ce point pour obtenir la nouvelle position du point dans le repère local.
-    \item Elle applique une translation inverse pour ramener le point à sa position d'origine.
+    \item Elle crée une matrice de translation entre l'origine globale du repère et l'origine locale (autour de laquelle le point effectuera sa rotation).
+    \item Elle crée une matrice de rotation selon l'angle de rotation appliqué à ce point.
+    \item Elle crée la matrice de transformation du point en combinant les matrices de translation et de rotation.
+    \item Elle applique la matrice de transformation au point.
+    \item Elle retourne les nouvelles coordonnées du point après rotation.
 \end{itemize}
 
 Les classes \texttt{RotationMatrix3x3} et \texttt{TranslationMatrix3x3} sont utilisées pour créer les matrices de rotation et de translation respectivement. 
