@@ -1,0 +1,314 @@
+% !TEX options=-synctex=-1
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{soul}
+\usepackage{graphicx} % pour inclure des images
+\usepackage{animate}
+
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm,
+}
+
+\usepackage{extensionCours}
+
+\title{TP 4 - Espace}
+\author{Groupe 2 \\* Colin, Henri, Leïla, Loïs}
+
+\begin{document}
+\maketitle
+
+\sectionExercice{Théorie}
+\label{exo:theorique}
+
+
+Soit un objet défini dans son repère local. On vous fournit les transformations suivantes à appliquer dans l'ordre indiqué :
+
+\begin{itemize}
+  \item Une translation par le vecteur \((a, b, c) = (3, -2, 5)\).
+  \item Une rotation autour de l'axe \(z\) de \(\theta = \frac{\pi}{3}\) (60°).
+\end{itemize}
+
+\begin{enumerate}
+  \item Écrivez individuellement la matrice de translation \(T\) et la matrice de rotation \(R_z\) en coordonnées homogènes (matrices \(4 \times 4\)).
+
+    La matrice de translation \(T\) par le vecteur \((a, b, c) = (3, -2, 5)\) en coordonnées homogènes est : 
+
+    \begin{equation}
+    T = 
+    \begin{pmatrix}
+    1 & 0 & 0 & a \\
+    0 & 1 & 0 & b \\
+    0 & 0 & 1 & c \\
+    0 & 0 & 0 & 1
+    \end{pmatrix} \end{equation}
+
+    Soit :
+
+    \begin{equation}
+    T = 
+    \begin{pmatrix}
+    1 & 0 & 0 & 3 \\
+    0 & 1 & 0 & -2 \\
+    0 & 0 & 1 & 5 \\
+    0 & 0 & 0 & 1
+    \end{pmatrix} \end{equation}
+
+    La matrice de rotation \(R_z\) autour de l'axe \(z\) de \(\theta = \frac{\pi}{3}\) en coordonnées homogènes est : 
+
+    \begin{equation}
+    R_z = 
+    \begin{pmatrix}
+    \cos(\theta) & -\sin(\theta) & 0 & 0 \\
+    \sin(\theta) & \cos(\theta) & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+    \end{pmatrix} \end{equation}
+
+    Soit :
+
+\begin{equation}
+    R_z = 
+    \begin{pmatrix}
+    \cos(\frac{\pi}{3}) & -\sin(\frac{\pi}{3}) & 0 & 0 \\
+    \sin(\frac{\pi}{3}) & \cos(\frac{\pi}{3}) & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+    \end{pmatrix} 
+    =
+    \begin{pmatrix}
+    \frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 0 \\
+    \frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+    \end{pmatrix} \end{equation}
+
+
+  \item Calculez la matrice de transformation globale \(M\) en composant ces matrices dans l'ordre approprié.
+
+  On obtient par produit $T R_z$ la matrice de transformation globale \(M\) :
+
+    \begin{equation}
+    M = T R_z =
+    \begin{pmatrix}
+    \frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 3 \\
+    \frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & -2 \\
+    0 & 0 & 1 & 5 \\
+    0 & 0 & 0 & 1
+    \end{pmatrix} 
+    \end{equation}
+
+
+  \item Appliquez \(M\) à un sommet local 
+  \[
+  V_{\text{local}} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}
+  \]
+  pour déterminer sa position dans l'espace monde.
+
+  On obtient les coordonnées mondes par le produit $M V_{\text{local}}$ :
+
+  \begin{equation}
+  V_{\text{monde}} = M V_{\text{local}}
+  \end{equation}
+
+  \begin{equation}
+  V_{\text{monde}} = 
+    \begin{pmatrix}
+    \frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 3 \\
+    \frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & -2 \\
+    0 & 0 & 1 & 5 \\
+    0 & 0 & 0 & 1
+    \end{pmatrix} 
+    \times
+    \begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}
+    =
+    \begin{pmatrix} \frac{7}{2} \\ -\frac{4 +\sqrt{3}}{2} \\ 5 \\ 1 \end{pmatrix}
+  \end{equation}
+
+  \item Déterminer le déterminant de la matrice $M$.
+
+Pour calculer le déterminant d’une matrice \(4 \times 4\), on utilise la méthode de Laplace (développement par cofacteurs), qui consiste à développer le déterminant suivant la première ligne.
+
+Soit la matrice suivante :
+
+\[
+\begin{pmatrix}
+a & b & c & d \\
+e & f & g & h \\
+i & j & k & l \\
+m & n & o & p
+\end{pmatrix}
+\]
+
+Son déterminant se calcule par :
+
+\[
+\det =
+a \times 
+\begin{pmatrix}
+f & g & h \\
+j & k & l \\
+n & o & p
+\end{pmatrix}
+- b \times 
+\begin{pmatrix}
+e & g & h \\
+i & k & l \\
+m & o & p
+\end{pmatrix}
++ c \times 
+\begin{pmatrix}
+e & f & h \\
+i & j & l \\
+m & n & p
+\end{pmatrix}
+- d \times 
+\begin{pmatrix}
+e & f & g \\
+i & j & k \\
+m & n & o
+\end{pmatrix}
+\]
+
+Dans notre cas, la matrice \(M\) est :
+
+\[
+\begin{pmatrix}
+\frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 3 \\
+\frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & -2 \\
+0 & 0 & 1 & 5 \\
+0 & 0 & 0 & 1
+\end{pmatrix}
+\]
+
+On identifie et on applique la formule :
+
+\[
+\det(M) =
+\frac{1}{2} \times 
+\begin{pmatrix}
+\frac{1}{2} & 0 & -2 \\
+0 & 1 & 5 \\
+0 & 0 & 1
+\end{pmatrix}
+- \left(-\frac{\sqrt{3}}{2}\right) \times 
+\begin{pmatrix}
+\frac{\sqrt{3}}{2} & 0 & -2 \\
+0 & 1 & 5 \\
+0 & 0 & 1
+\end{pmatrix}
++ 0 
+- 3 \times 
+\begin{pmatrix}
+\frac{\sqrt{3}}{2} & \frac{1}{2} & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0
+\end{pmatrix}
+\]
+
+On obtient :
+
+\[
+\det(M) = \frac{1}{2} \times \frac{1}{2} + \frac{\sqrt{3}}{2} \times \frac{\sqrt{3}}{2} = \frac{1}{4} + \frac{3}{4} = 1
+\]
+
+\textbf{Conclusion :} le déterminant de la matrice \(M\) est \(1\). La transformation conserve les volumes.
+
+  \item On applique à l'objet \(H(1.5)\) une homothétie uniforme de facteur $1.5$. Déterminer la nouvelle matrice $M$ de transformation globale.
+
+La matrice d’homothétie uniforme de facteur \(1.5\) en coordonnées homogènes est :
+
+  \begin{equation}
+  H = 
+  \begin{pmatrix}
+  1.5 & 0 & 0 & 0 \\
+  0 & 1.5 & 0 & 0 \\
+  0 & 0 & 1.5 & 0 \\
+  0 & 0 & 0 & 1
+  \end{pmatrix}
+  \end{equation}
+
+  La nouvelle matrice globale devient donc :
+
+  \begin{equation}
+  M' = T \times R_z \times H
+  = 
+  \begin{pmatrix}
+  \frac{3}{4} & -\frac{3\sqrt{3}}{4} & 0 & 0 \\
+  \frac{3\sqrt{3}}{4} & \frac{3}{4} & 0 & -2 \\
+  0 & 0 & \frac{3}{2} & 5 \\
+  0 & 0 & 0 & 1
+  \end{pmatrix}
+  \end{equation}
+
+  \item Déterminer le déterminant de la matrice $M$, en déduire une interprétation géométrique du déterminant.
+
+On applique la même méthode que pour la matrice \(M\), en développant selon la première ligne de :
+
+  \[
+  M' = 
+  \begin{pmatrix}
+  \frac{3}{4} & -\frac{3\sqrt{3}}{4} & 0 & 0 \\
+  \frac{3\sqrt{3}}{4} & \frac{3}{4} & 0 & -2 \\
+  0 & 0 & \frac{3}{2} & 5 \\
+  0 & 0 & 0 & 1
+  \end{pmatrix}
+  \]
+
+  On effectue les calculs :
+
+  \[
+  \det(M') =
+  \frac{3}{4} \times 
+  \begin{pmatrix}
+  \frac{3}{4} & 0 & -2 \\
+  0 & \frac{3}{2} & 5 \\
+  0 & 0 & 1
+  \end{pmatrix}
+  + \frac{3\sqrt{3}}{4} \times 
+  \begin{pmatrix}
+  \frac{3\sqrt{3}}{4} & 0 & -2 \\
+  0 & \frac{3}{2} & 5 \\
+  0 & 0 & 1
+  \end{pmatrix}
+  \]
+
+  \[
+  = \frac{3}{4} \times \frac{9}{8} + \frac{3\sqrt{3}}{4} \times \frac{9\sqrt{3}}{8}
+  = \frac{27}{32} + \frac{27}{32} = \frac{54}{32} = \frac{27}{16} = \frac{27}{8}
+  \]
+
+  \textbf{Conclusion :} le déterminant de la matrice \(M'\) est \(\frac{27}{8} = 3.375\).  
+  L’homothétie de facteur \(1{,}5\) multiplie le volume par \(1.5^3 = 3.375\).
+
+
+  \item Soit les coordonnées monde d'un somme de l'objet :  
+  \[
+  W = \begin{pmatrix} 4 \\ -4 \\ 5 \\ 1 \end{pmatrix}
+  \]
+  déterminer ses coordonnées locales.
+\end{enumerate}
+
+
+\sectionExercice{Implémentation 3D}
+\label{exo:impl}
+
+Dans la suite, on va essayer de reproduire une version simplifié du fonctionnement d'Unity. 
+
+\begin{enumerate}
+  \item Implémenter une classe vecteur et matrice adaptées pour la géométrie dans l'espace et les coordonnées homogènes.
+  \item Implémenter une façon de calculer les coordonnées barycentrique d'un point pour un triangle donné. 
+  \item Implémenter une classe \texttt{gameobject} qui vous servira de réceptacle pour toutes les informations d'un objet dans votre jeu.
+  \item Implémenter une classe \texttt{transform} qui contiendra les informations de géométries de votre \texttt{gameobject}.
+  \item Implémenter une classe \texttt{renderer} qui contiendra les informations de rendu de votre \texttt{gameobject}.
+  \item Implémenter un pipeline de rendu simplifié comme vu en cours pour afficher un cube.
+\end{enumerate}
+
+\end{document}
