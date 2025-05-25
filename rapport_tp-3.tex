@@ -31,7 +31,7 @@ Vous êtes développeur d'un jeu sous Unity. Malheureusement, comme à son habit
     \item \emph{Soit un personnage modélisé par un sprite instancié à l'origine du moteur, l'utilisateur souhaite le déplacer à la position $\begin{pmatrix} 1 & 2\end{pmatrix}$, donner la matrice de changement de coordonnée à appliquer au personnage pour lui donner sa nouvelle position.}\label{exo:1.1}\newline \newline
 Réponse :
 
-On cherche la matrice de transpositions correspondant aux coordonnées homogènes mondes du personnage et nommée $T_p$ : 
+On cherche la matrice de translation correspondant aux coordonnées homogènes mondes du personnage et nommée $T_p$ : 
 
  \begin{equation}
 T_p = 
@@ -71,7 +71,7 @@ T_p =
     \item \emph{L'utilisateur souhaite également faire tourner le personnage de \(\frac{\pi}{4}\) dans le sens trigonométrique autour de l'origine. Donnez la matrice de rotation correspondante en coordonnées homogènes.} \label{exo:1.2}\newline \newline
 Réponse :
 
-On cherche la matrice de rotations correspondant aux coordonnées homogènes mondes du personnage et nommée $R_p$ : 
+On cherche la matrice de rotation correspondant aux coordonnées homogènes mondes du personnage et nommée $R_p$ : 
  \begin{equation}
 R_p = 
 \begin{pmatrix}
@@ -149,7 +149,7 @@ TR_e =
     \item \emph{Donner les coordonnées mondes de l'épée.}\newline \newline
 Réponse :
 
-Pour obtenir ces coordonnées, on doit d'abord repèrer les coordonnées du personnage dans le monde. i.e sa matrice de transformation $TRH_p$ dans le monde qui est le produit $T_p R_p H_p$ :
+Pour obtenir ces coordonnées, on doit d'abord repérer les coordonnées du personnage dans le monde. i.e sa matrice de transformation $TRH_p$ dans le monde qui est le produit $T_p R_p H_p$ :
  \begin{equation}\boxed{
 TRH_p = 
 \begin{pmatrix}
