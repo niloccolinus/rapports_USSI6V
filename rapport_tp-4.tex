@@ -28,7 +28,6 @@
 \sectionExercice{Théorie}
 \label{exo:theorique}
 
-
 Soit un objet défini dans son repère local. On vous fournit les transformations suivantes à appliquer dans l'ordre indiqué :
 
 \begin{itemize}
@@ -41,40 +40,43 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
 
     La matrice de translation \(T\) par le vecteur \((a, b, c) = (3, -2, 5)\) en coordonnées homogènes est : 
 
-    \begin{equation}
+    \[
     T = 
     \begin{pmatrix}
     1 & 0 & 0 & a \\
     0 & 1 & 0 & b \\
     0 & 0 & 1 & c \\
     0 & 0 & 0 & 1
-    \end{pmatrix} \end{equation}
+    \end{pmatrix}
+    \]
 
     Soit :
 
-    \begin{equation}
+    \[
     T = 
     \begin{pmatrix}
     1 & 0 & 0 & 3 \\
     0 & 1 & 0 & -2 \\
     0 & 0 & 1 & 5 \\
     0 & 0 & 0 & 1
-    \end{pmatrix} \end{equation}
+    \end{pmatrix}
+    \]
 
     La matrice de rotation \(R_z\) autour de l'axe \(z\) de \(\theta = \frac{\pi}{3}\) en coordonnées homogènes est : 
 
-    \begin{equation}
+    \[
     R_z = 
     \begin{pmatrix}
     \cos(\theta) & -\sin(\theta) & 0 & 0 \\
     \sin(\theta) & \cos(\theta) & 0 & 0 \\
     0 & 0 & 1 & 0 \\
     0 & 0 & 0 & 1
-    \end{pmatrix} \end{equation}
+    \end{pmatrix}
+    \]
 
     Soit :
 
-\begin{equation}
+    \[
     R_z = 
     \begin{pmatrix}
     \cos(\frac{\pi}{3}) & -\sin(\frac{\pi}{3}) & 0 & 0 \\
@@ -88,14 +90,16 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
     \frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & 0 \\
     0 & 0 & 1 & 0 \\
     0 & 0 & 0 & 1
-    \end{pmatrix} \end{equation}
+    \end{pmatrix} 
+    \]
 
+    \newpage
 
   \item Calculez la matrice de transformation globale \(M\) en composant ces matrices dans l'ordre approprié.
 
-  On obtient par produit $T R_z$ la matrice de transformation globale \(M\) :
+    On obtient par produit $T R_z$ la matrice de transformation globale \(M\) :
 
-    \begin{equation}
+    \[
     M = T R_z =
     \begin{pmatrix}
     \frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 3 \\
@@ -103,199 +107,258 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
     0 & 0 & 1 & 5 \\
     0 & 0 & 0 & 1
     \end{pmatrix} 
-    \end{equation}
+    \]
 
 
   \item Appliquez \(M\) à un sommet local 
   \[
   V_{\text{local}} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}
   \]
-  pour déterminer sa position dans l'espace monde.
+  pour déterminer sa position dans l'espace monde. \newline
 
-  On obtient les coordonnées mondes par le produit $M V_{\text{local}}$ :
+    On obtient les coordonnées mondes par le produit $M V_{\text{local}}$ :
 
-  \begin{equation}
-  V_{\text{monde}} = M V_{\text{local}}
-  \end{equation}
+    \[
+    V_{\text{monde}} = M V_{\text{local}}
+    \]
 
-  \begin{equation}
-  V_{\text{monde}} = 
+    \[
+    V_{\text{monde}} = 
+      \begin{pmatrix}
+      \frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 3 \\
+      \frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & -2 \\
+      0 & 0 & 1 & 5 \\
+      0 & 0 & 0 & 1
+      \end{pmatrix} 
+      \times
+      \begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}
+      =
+      \begin{pmatrix} \frac{7}{2} \\ -\frac{4 +\sqrt{3}}{2} \\ 5 \\ 1 \end{pmatrix}
+    \] \newline
+
+  \item Déterminer le déterminant de la matrice $M$. \newline
+
+    Pour calculer le déterminant d’une matrice \(4 \times 4\), on utilise la méthode de Laplace (développement par cofacteurs), qui consiste à développer le déterminant suivant la première ligne.
+
+    Soit la matrice suivante :
+
+    \[
+    \begin{pmatrix}
+    a & b & c & d \\
+    e & f & g & h \\
+    i & j & k & l \\
+    m & n & o & p
+    \end{pmatrix}
+    \]
+
+    Son déterminant se calcule par :
+
+    \[
+    \det =
+    a \times 
+    \begin{pmatrix}
+    f & g & h \\
+    j & k & l \\
+    n & o & p
+    \end{pmatrix}
+    - b \times 
+    \begin{pmatrix}
+    e & g & h \\
+    i & k & l \\
+    m & o & p
+    \end{pmatrix}
+    + c \times 
+    \begin{pmatrix}
+    e & f & h \\
+    i & j & l \\
+    m & n & p
+    \end{pmatrix}
+    - d \times 
+    \begin{pmatrix}
+    e & f & g \\
+    i & j & k \\
+    m & n & o
+    \end{pmatrix}
+    \]
+
+    Dans notre cas, la matrice \(M\) est :
+
+    \newpage
+
+    \[
     \begin{pmatrix}
     \frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 3 \\
     \frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & -2 \\
     0 & 0 & 1 & 5 \\
     0 & 0 & 0 & 1
-    \end{pmatrix} 
-    \times
-    \begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}
-    =
-    \begin{pmatrix} \frac{7}{2} \\ -\frac{4 +\sqrt{3}}{2} \\ 5 \\ 1 \end{pmatrix}
-  \end{equation}
+    \end{pmatrix}
+    \]
 
-  \item Déterminer le déterminant de la matrice $M$.
+    On identifie et on applique la formule :
 
-Pour calculer le déterminant d’une matrice \(4 \times 4\), on utilise la méthode de Laplace (développement par cofacteurs), qui consiste à développer le déterminant suivant la première ligne.
+    \[
+    \det(M) =
+    \frac{1}{2} \times 
+    \begin{pmatrix}
+    \frac{1}{2} & 0 & -2 \\
+    0 & 1 & 5 \\
+    0 & 0 & 1
+    \end{pmatrix}
+    - \left(-\frac{\sqrt{3}}{2}\right) \times 
+    \begin{pmatrix}
+    \frac{\sqrt{3}}{2} & 0 & -2 \\
+    0 & 1 & 5 \\
+    0 & 0 & 1
+    \end{pmatrix}
+    + 0 
+    - 3 \times 
+    \begin{pmatrix}
+    \frac{\sqrt{3}}{2} & \frac{1}{2} & 0 \\
+    0 & 0 & 1 \\
+    0 & 0 & 0
+    \end{pmatrix}
+    \]
 
-Soit la matrice suivante :
+    On obtient :
 
-\[
-\begin{pmatrix}
-a & b & c & d \\
-e & f & g & h \\
-i & j & k & l \\
-m & n & o & p
-\end{pmatrix}
-\]
+    \[
+    \det(M) = \frac{1}{2} \times \frac{1}{2} + \frac{\sqrt{3}}{2} \times \frac{\sqrt{3}}{2} = \frac{1}{4} + \frac{3}{4} = 1
+    \] \newline
 
-Son déterminant se calcule par :
+    \textbf{Conclusion :} le déterminant de la matrice \(M\) est \(1\). La transformation conserve les volumes. \newline
 
-\[
-\det =
-a \times 
-\begin{pmatrix}
-f & g & h \\
-j & k & l \\
-n & o & p
-\end{pmatrix}
-- b \times 
-\begin{pmatrix}
-e & g & h \\
-i & k & l \\
-m & o & p
-\end{pmatrix}
-+ c \times 
-\begin{pmatrix}
-e & f & h \\
-i & j & l \\
-m & n & p
-\end{pmatrix}
-- d \times 
-\begin{pmatrix}
-e & f & g \\
-i & j & k \\
-m & n & o
-\end{pmatrix}
-\]
+  \item On applique à l'objet \(H(1.5)\) une homothétie uniforme de facteur $1.5$. Déterminer la nouvelle matrice $M$ de transformation globale. \newline
 
-Dans notre cas, la matrice \(M\) est :
+    La matrice d’homothétie uniforme de facteur \(1.5\) en coordonnées homogènes est :
 
-\[
-\begin{pmatrix}
-\frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 3 \\
-\frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & -2 \\
-0 & 0 & 1 & 5 \\
-0 & 0 & 0 & 1
-\end{pmatrix}
-\]
+    \[
+    H = 
+    \begin{pmatrix}
+    1.5 & 0 & 0 & 0 \\
+    0 & 1.5 & 0 & 0 \\
+    0 & 0 & 1.5 & 0 \\
+    0 & 0 & 0 & 1
+    \end{pmatrix}
+    \]
 
-On identifie et on applique la formule :
+    La nouvelle matrice globale devient donc :
 
-\[
-\det(M) =
-\frac{1}{2} \times 
-\begin{pmatrix}
-\frac{1}{2} & 0 & -2 \\
-0 & 1 & 5 \\
-0 & 0 & 1
-\end{pmatrix}
-- \left(-\frac{\sqrt{3}}{2}\right) \times 
-\begin{pmatrix}
-\frac{\sqrt{3}}{2} & 0 & -2 \\
-0 & 1 & 5 \\
-0 & 0 & 1
-\end{pmatrix}
-+ 0 
-- 3 \times 
-\begin{pmatrix}
-\frac{\sqrt{3}}{2} & \frac{1}{2} & 0 \\
-0 & 0 & 1 \\
-0 & 0 & 0
-\end{pmatrix}
-\]
+    \[
+    M' = T \times R_z \times H
+    = 
+    \begin{pmatrix}
+    \frac{3}{4} & -\frac{3\sqrt{3}}{4} & 0 & 0 \\
+    \frac{3\sqrt{3}}{4} & \frac{3}{4} & 0 & -2 \\
+    0 & 0 & \frac{3}{2} & 5 \\
+    0 & 0 & 0 & 1
+    \end{pmatrix}
+    \] \newline
 
-On obtient :
+  \item Déterminer le déterminant de la matrice $M$, en déduire une interprétation géométrique du déterminant. \newline
 
-\[
-\det(M) = \frac{1}{2} \times \frac{1}{2} + \frac{\sqrt{3}}{2} \times \frac{\sqrt{3}}{2} = \frac{1}{4} + \frac{3}{4} = 1
-\]
+    On applique la même méthode que pour la matrice \(M\), en développant selon la première ligne de :
 
-\textbf{Conclusion :} le déterminant de la matrice \(M\) est \(1\). La transformation conserve les volumes.
+    \[
+    M' = 
+    \begin{pmatrix}
+    \frac{3}{4} & -\frac{3\sqrt{3}}{4} & 0 & 0 \\
+    \frac{3\sqrt{3}}{4} & \frac{3}{4} & 0 & -2 \\
+    0 & 0 & \frac{3}{2} & 5 \\
+    0 & 0 & 0 & 1
+    \end{pmatrix}
+    \]
 
-  \item On applique à l'objet \(H(1.5)\) une homothétie uniforme de facteur $1.5$. Déterminer la nouvelle matrice $M$ de transformation globale.
+    On effectue les calculs :
 
-La matrice d’homothétie uniforme de facteur \(1.5\) en coordonnées homogènes est :
+    \[
+    \det(M') =
+    \frac{3}{4} \times 
+    \begin{pmatrix}
+    \frac{3}{4} & 0 & -2 \\
+    0 & \frac{3}{2} & 5 \\
+    0 & 0 & 1
+    \end{pmatrix}
+    + \frac{3\sqrt{3}}{4} \times 
+    \begin{pmatrix}
+    \frac{3\sqrt{3}}{4} & 0 & -2 \\
+    0 & \frac{3}{2} & 5 \\
+    0 & 0 & 1
+    \end{pmatrix}
+    \]
 
-  \begin{equation}
-  H = 
-  \begin{pmatrix}
-  1.5 & 0 & 0 & 0 \\
-  0 & 1.5 & 0 & 0 \\
-  0 & 0 & 1.5 & 0 \\
-  0 & 0 & 0 & 1
-  \end{pmatrix}
-  \end{equation}
+    \[
+    = \frac{3}{4} \times \frac{9}{8} + \frac{3\sqrt{3}}{4} \times \frac{9\sqrt{3}}{8}
+    = \frac{27}{32} + \frac{27}{32} = \frac{54}{32} = \frac{27}{16} = \frac{27}{8}
+    \] \newline
 
-  La nouvelle matrice globale devient donc :
+    \textbf{Conclusion :} le déterminant de la matrice \(M'\) est \(\frac{27}{8} = 3.375\).  
+    L’homothétie de facteur \(1{,}5\) multiplie le volume par \(1.5^3 = 3.375\). \newline
 
-  \begin{equation}
-  M' = T \times R_z \times H
-  = 
-  \begin{pmatrix}
-  \frac{3}{4} & -\frac{3\sqrt{3}}{4} & 0 & 0 \\
-  \frac{3\sqrt{3}}{4} & \frac{3}{4} & 0 & -2 \\
-  0 & 0 & \frac{3}{2} & 5 \\
-  0 & 0 & 0 & 1
-  \end{pmatrix}
-  \end{equation}
-
-  \item Déterminer le déterminant de la matrice $M$, en déduire une interprétation géométrique du déterminant.
-
-On applique la même méthode que pour la matrice \(M\), en développant selon la première ligne de :
-
-  \[
-  M' = 
-  \begin{pmatrix}
-  \frac{3}{4} & -\frac{3\sqrt{3}}{4} & 0 & 0 \\
-  \frac{3\sqrt{3}}{4} & \frac{3}{4} & 0 & -2 \\
-  0 & 0 & \frac{3}{2} & 5 \\
-  0 & 0 & 0 & 1
-  \end{pmatrix}
-  \]
-
-  On effectue les calculs :
-
-  \[
-  \det(M') =
-  \frac{3}{4} \times 
-  \begin{pmatrix}
-  \frac{3}{4} & 0 & -2 \\
-  0 & \frac{3}{2} & 5 \\
-  0 & 0 & 1
-  \end{pmatrix}
-  + \frac{3\sqrt{3}}{4} \times 
-  \begin{pmatrix}
-  \frac{3\sqrt{3}}{4} & 0 & -2 \\
-  0 & \frac{3}{2} & 5 \\
-  0 & 0 & 1
-  \end{pmatrix}
-  \]
-
-  \[
-  = \frac{3}{4} \times \frac{9}{8} + \frac{3\sqrt{3}}{4} \times \frac{9\sqrt{3}}{8}
-  = \frac{27}{32} + \frac{27}{32} = \frac{54}{32} = \frac{27}{16} = \frac{27}{8}
-  \]
-
-  \textbf{Conclusion :} le déterminant de la matrice \(M'\) est \(\frac{27}{8} = 3.375\).  
-  L’homothétie de facteur \(1{,}5\) multiplie le volume par \(1.5^3 = 3.375\).
-
-
-  \item Soit les coordonnées monde d'un somme de l'objet :  
+  \item Soit les coordonnées monde d'un sommet de l'objet :  
   \[
   W = \begin{pmatrix} 4 \\ -4 \\ 5 \\ 1 \end{pmatrix}
   \]
-  déterminer ses coordonnées locales.
-\end{enumerate}
+  déterminer ses coordonnées locales. \newline
 
+    On obtient les coordonnées mondes par le produit $M W$ :
+
+      \[
+      V_{\text{local}} = M^{-1} W
+      \]
+
+    où $M^{-1}$ est l'inverse de la matrice globale $M$. \newline
+
+    Pour calculer $M^{-1}$, on applique la méthode du pivot de Gauss sur la matrice augmentée $[M \mid I_4]$:
+
+      \[
+      \left[
+      \begin{array}{cccc|cccc}
+      \frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 3 & 1 & 0 & 0 & 0 \\
+      \frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & -2 & 0 & 1 & 0 & 0 \\
+      0 & 0 & 1 & 5 & 0 & 0 & 1 & 0 \\
+      0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+      \end{array}
+      \right]
+      \]
+
+    On obtient :
+
+      \[
+      M^{-1} =
+      \begin{pmatrix}
+      \frac{1}{2} & \frac{\sqrt{3}}{2} & 0 & -\frac{3}{2} + \sqrt{3} \\
+      -\frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & \frac{3\sqrt{3}}{2} + 1 \\
+      0 & 0 & 1 & -5 \\
+      0 & 0 & 0 & 1
+      \end{pmatrix}
+      \] \newline
+
+    On effectue ensuite le produit matriciel:
+
+      \[
+      V_{\text{local}} = 
+      \begin{pmatrix}
+      \frac{1}{2} & \frac{\sqrt{3}}{2} & 0 & -\frac{3}{2} + \sqrt{3} \\
+      -\frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & \frac{3\sqrt{3}}{2} + 1 \\
+      0 & 0 & 1 & -5 \\
+      0 & 0 & 0 & 1
+      \end{pmatrix}
+      \begin{pmatrix}
+      4 \\ -4 \\ 5 \\ 1
+      \end{pmatrix}
+      \]
+
+      \[
+      V_{\text{local}} =
+      \begin{pmatrix}
+      \frac{1}{2} - \sqrt{3} \\
+      -1 - \frac{\sqrt{3}}{2} \\
+      0 \\
+      1
+      \end{pmatrix}
+      \]
+
+\end{enumerate}
 
 \sectionExercice{Implémentation 3D}
 \label{exo:impl}
