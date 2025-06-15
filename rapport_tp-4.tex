@@ -414,15 +414,19 @@ Dans la suite, on va essayer de reproduire une version simplifié du fonctionnem
 
   \item \emph{Implémenter une classe \texttt{gameobject} qui vous servira de réceptacle pour toutes les informations d'un objet dans votre jeu.}
 
-  La classe \texttt{GameObject} génère des objects du même nom ayant trois attributs : un nom, un objet de la classe \texttt{transform} définit dans la question suivante ainsi qu'un objet de la class \texttt\{Renderer3D} de la question 5.
+  La classe \texttt{GameObject} génère des objects du même nom ayant trois attributs : un nom, un objet de la classe \texttt{Transform} définit dans la question suivante ainsi qu'un objet de la class \texttt{Renderer3D} de la question 5. Il contient aussi les différenets données associées aux mesh 3D ainsi que les coordonnées homogènes des vecteurs de l'objet.
   \newline
   
 
   \item \emph{Implémenter une classe \texttt{transform} qui contiendra les informations de géométries de votre \texttt{gameobject}.}
-  \newline
+  
+
+  La classe \texttt{Transform} regroupe les différentes transformations qui seront appliquées à notre objet de la classe \texttt{GameObject} dont le scale anisotrope avec la méthode \texttt{anisotropic\_scale}. \newline 
 
 
   \item \emph{Implémenter une classe \texttt{renderer} qui contiendra les informations de rendu de votre \texttt{gameobject}.}
+
+  La classe \texttt{Renderer3D} contient l'application des transformations sur les vecteurs d'un GameObject  
   \newline
 
 
