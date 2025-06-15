@@ -431,7 +431,17 @@ Dans la suite, on va essayer de reproduire une version simplifié du fonctionnem
 
 
   \item \emph{Implémenter un pipeline de rendu simplifié comme vu en cours pour afficher un cube.}
-  \newline
+  En se basant sur les classes implémentées précédemment, telles que GameObject, Transform et Renderer, en plus des classes de matrices et vecteurs mises à jour, nous avons créé un système simplifié de pipeline de rendu. Cette dernière peut convertir un ensemble de points sur un espace 3D vers des points projetés sur un espace 2D, plus spécifiquement un écran.
+
+  Elle se divise en 4 parties majeures :
+
+  — Transformation des sommets : Les coordonnées de chaque sommet sont converties d’un espace de coordonnées local vers des coordonnées monde.
+  
+  — Projection : On détermine où chaque sommet devrait apparaître sur l’écran. Les coordonnées monde du point sont converties en coordonnées de projection, prenant en compte la perspective.
+  
+  — Rasterisation : Les sommets projetés sont joints pour former des triangles, et les pixels à l’intérieur de ces triangles sont déterminés. C’est ici que l’on calcule quels pixels de l’écran seront affectés par chaque triangle.
+  
+  — Shading : Pour chaque pixel affecté par un triangle, on détermine la couleur finale à afficher. Cela peut impliquer des calculs de lumière, de texture, etc.\newline
 \end{enumerate}
 
 \end{document}
