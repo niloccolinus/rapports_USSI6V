@@ -401,26 +401,31 @@ Dans la suite, on va essayer de reproduire une version simplifié du fonctionnem
 \begin{enumerate}
   \item \emph{Implémenter une classe vecteur et matrice adaptées pour la géométrie dans l'espace et les coordonnées homogènes.}
 
-Pour reprduire uneversion simplifié du moteur Unity, nous avons implémenté une classe \texttt{Vector4} représentant un vecteur à quatre composantes, et sa sous-classe \texttt{HomogeneousVector4} utilisée pour représenter les points en coordonnées homogènes. La classe \texttt{Vector4} fournit une méthode \texttt{multiply\_by\_matrix} permettant de transformer un vecteur par une matrice 4×4.
+  Pour reprduire uneversion simplifié du moteur Unity, nous avons implémenté une classe \texttt{Vector4} représentant un vecteur à quatre composantes, et sa sous-classe \texttt{HomogeneousVector4} utilisée pour représenter les points en coordonnées homogènes. La classe \texttt{Vector4} fournit une méthode \texttt{multiply\_by\_matrix} permettant de transformer un vecteur par une matrice 4×4.
 
-Nous avons ensuite défini une classe \texttt{Matrix4x4}, représentant une matrice générique en coordonnées homogènes. Elle inclut une méthode \texttt{prod} pour effectuer le produit matriciel ainsi que les diffréntes transformations : \texttt{TranslationMatrix4x4}, \texttt{HomothetyMatrix4x4} et les méthodes de roation selon les 3 axes x, y et z qui sont suffixe du nom de méthode \texttt{RotationMatrix4x4\_}.  
+  Nous avons ensuite défini une classe \texttt{Matrix4x4}, représentant une matrice générique en coordonnées homogènes. Elle inclut une méthode \texttt{prod} pour effectuer le produit matriciel ainsi que les diffréntes transformations : \texttt{translationMatrix4x4}, \texttt{homothetyMatrix4x4} et les méthodes de roation selon les 3 axes x, y et z qui sont suffixe du nom de méthode \texttt{rotationMatrix4x4\_}.  
 
-Ces nouvelles classes ont été ajoutées à notre bibliothèque Mathy dans \newline \texttt{geometry\_engine\_librairie}. \newline
+  Ces nouvelles classes ont été ajoutées à notre bibliothèque Mathy dans \newline \texttt{geometry\_engine\_librairie}. \newline
   
 
   \item \emph{Implémenter une façon de calculer les coordonnées barycentrique d'un point pour un triangle donné.}
-  
+
+  Le calcul des coordonnées barycentriques d'un triangle est opéré par la fonction \texttt{barycentric\_coordinates}. Cette fonction récupère les coordonnées des sommets \texttt{A, B et C} du triangle et d'un point \texttt{P} quelconque. On applique la règle de de Cramer afin de déterminer les lambdas tels que : \(P = \lambda A * A + \lambda B * B + \lambda C * C, avec \lambda A + \lambda B + \lambda C = 1\).\newline
 
   \item \emph{Implémenter une classe \texttt{gameobject} qui vous servira de réceptacle pour toutes les informations d'un objet dans votre jeu.}
+  \newline
   
 
   \item \emph{Implémenter une classe \texttt{transform} qui contiendra les informations de géométries de votre \texttt{gameobject}.}
-  
+  \newline
+
 
   \item \emph{Implémenter une classe \texttt{renderer} qui contiendra les informations de rendu de votre \texttt{gameobject}.}
-  
+  \newline
+
 
   \item \emph{Implémenter un pipeline de rendu simplifié comme vu en cours pour afficher un cube.}
+  \newline
 \end{enumerate}
 
 \end{document}
