@@ -53,6 +53,7 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
     Soit :
 
     \[
+    \boxed{
     T = 
     \begin{pmatrix}
     1 & 0 & 0 & 3 \\
@@ -60,6 +61,7 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
     0 & 0 & 1 & 5 \\
     0 & 0 & 0 & 1
     \end{pmatrix}
+    }
     \]
 
     La matrice de rotation \(R_z\) autour de l'axe \(z\) de \(\theta = \frac{\pi}{3}\) en coordonnées homogènes est : 
@@ -77,6 +79,7 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
     Soit :
 
     \[
+    \boxed{
     R_z = 
     \begin{pmatrix}
     \cos(\frac{\pi}{3}) & -\sin(\frac{\pi}{3}) & 0 & 0 \\
@@ -91,6 +94,7 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
     0 & 0 & 1 & 0 \\
     0 & 0 & 0 & 1
     \end{pmatrix} 
+    }
     \]
 
     \newpage
@@ -100,13 +104,15 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
     On obtient par produit $T R_z$ la matrice de transformation globale \(M\) :
 
     \[
+    \boxed{
     M = T R_z =
     \begin{pmatrix}
     \frac{1}{2} & -\frac{\sqrt{3}}{2} & 0 & 3 \\
     \frac{\sqrt{3}}{2} & \frac{1}{2} & 0 & -2 \\
     0 & 0 & 1 & 5 \\
     0 & 0 & 0 & 1
-    \end{pmatrix} 
+    \end{pmatrix}
+    } 
     \]
 
 
@@ -132,8 +138,13 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
       \end{pmatrix} 
       \times
       \begin{pmatrix} 1 \\ 0 \\ 0 \\ 1 \end{pmatrix}
-      =
+    \]
+
+    \[
+    \boxed{
+    V_{\text{monde}} = 
       \begin{pmatrix} \frac{7}{2} \\ -\frac{4 +\sqrt{3}}{2} \\ 5 \\ 1 \end{pmatrix}
+    }
     \] \newline
 
   \item Déterminer le déterminant de la matrice $M$. \newline
@@ -222,7 +233,13 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
     On obtient :
 
     \[
-    \det(M) = \frac{1}{2} \times \frac{1}{2} + \frac{\sqrt{3}}{2} \times \frac{\sqrt{3}}{2} = \frac{1}{4} + \frac{3}{4} = 1
+    \det(M) = \frac{1}{2} \times \frac{1}{2} + \frac{\sqrt{3}}{2} \times \frac{\sqrt{3}}{2} = \frac{1}{4} + \frac{3}{4}
+    \]
+
+    \[
+    \boxed{
+    \det(M) = 1
+    }
     \] \newline
 
     \textbf{Conclusion :} le déterminant de la matrice \(M\) est \(1\). La transformation conserve les volumes. \newline
@@ -245,13 +262,18 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
 
     \[
     M' = T \times R_z \times H
-    = 
+    \]
+
+    \[
+    \boxed{
+    M' =
     \begin{pmatrix}
     \frac{3}{4} & -\frac{3\sqrt{3}}{4} & 0 & 0 \\
     \frac{3\sqrt{3}}{4} & \frac{3}{4} & 0 & -2 \\
     0 & 0 & \frac{3}{2} & 5 \\
     0 & 0 & 0 & 1
     \end{pmatrix}
+    }
     \] \newline
 
   \item Déterminer le déterminant de la matrice $M$, en déduire une interprétation géométrique du déterminant. \newline
@@ -288,7 +310,16 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
 
     \[
     = \frac{3}{4} \times \frac{9}{8} + \frac{3\sqrt{3}}{4} \times \frac{9\sqrt{3}}{8}
-    = \frac{27}{32} + \frac{27}{32} = \frac{54}{32} = \frac{27}{16} = \frac{27}{8}
+    \]
+
+    \[
+    = \frac{27}{32} + \frac{27}{32} = \frac{54}{32} = \frac{27}{16} 
+    \]
+
+    \[
+    \boxed{
+    \det(M') = \frac{27}{8}
+    }
     \] \newline
 
     \textbf{Conclusion :} le déterminant de la matrice \(M'\) est \(\frac{27}{8} = 3.375\).  
@@ -349,6 +380,7 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
       \]
 
       \[
+      \boxed{
       V_{\text{local}} =
       \begin{pmatrix}
       \frac{1}{2} - \sqrt{3} \\
@@ -356,6 +388,7 @@ Soit un objet défini dans son repère local. On vous fournit les transformation
       0 \\
       1
       \end{pmatrix}
+      }
       \]
 
 \end{enumerate}
