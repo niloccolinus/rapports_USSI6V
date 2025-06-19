@@ -280,7 +280,8 @@ On souhaite effectuer une rotation de $135^\circ$ autour de l’axe $z$. On cons
               \begin{equation}
                 \boxed{p_1 = p'}
               \end{equation}
-              \item Commentez les avantages de l’approche quaternion par rapport à l’approche Euler dans ce cas particulier.
+              \item \emph{Commentez les avantages de l’approche quaternion par rapport à l’approche Euler dans ce cas particulier.} \newline \newline
+              Dans ce cas particulier, l'approche quaternion permet d'éviter le phénomène de blocage de cardan (\emph{gimbal lock}). En effet, lorsque l'on utilise les angles d'Euler pour calculer cette rotation, les matrices de rotation $R_x$ et $R_y$ prennent la valeur d'une matrice identité, ce qui mène à la perte de deux degrés de liberté.
           \end{enumerate}
 \end{enumerate}
 
