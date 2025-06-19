@@ -65,7 +65,7 @@
               \end{align}
               D'où              
               \begin{align}
-               q \overline{q} &= (1 - (-29), 0 ) \\
+               q \overline{q} &= [1 - (-29), 0 ] \\
                q \overline{q} &= 30
               \end{align}
               Donc on a bien :
@@ -86,7 +86,7 @@
               \( q_1 q_2 = (w_1 w_2 − v_1 \cdot v_2, w_1 v_2 + w_2 v_1 + v_1 \times v_2) \). \newline
               Ce qui donne :
               \begin{equation}
-              q_1 q_2 = (2, (2, -1, 0))
+              q_1 q_2 = [2, (2, -1, 0)]
               \end{equation}
               \begin{equation}
               \boxed{q_1 q_2 = 2 + 2 i - j}
@@ -95,7 +95,7 @@
               \( q_2 q_1 = (w_1 w_2 − v_2 \cdot v_1, w_1 v_2 + w_2 v_1 + v_2 \times v_1) \). \newline
               Ce qui donne :
               \begin{equation}
-              q_2 q_1 = (2, (0, 1, 2))
+              q_2 q_1 = [2, (0, 1, 2)]
               \end{equation}
               \begin{equation}
               \boxed{q_2 q_1 = 2 + j + k}
@@ -116,21 +116,170 @@ On souhaite effectuer une rotation de $135^\circ$ autour de l’axe $z$. On cons
           On encode cette rotation par les angles d’Euler $(\phi, \theta, \psi) = (0^\circ, 0^\circ, 135^\circ)$ selon l’ordre $ZYX$.
           \begin{enumerate}
               \item \emph{Écrivez les matrices élémentaires $R_x(\phi)$, $R_y(\theta)$ et $R_z(\psi)$.}
-              \item Calculez la matrice de rotation totale $R = R_z R_y R_x$.
-              \item Appliquez cette matrice au vecteur $\mathbf{p}$ pour obtenir $\mathbf{p}_1 = R \mathbf{p}$.
+              \begin{equation}
+              R_x(\phi) = 
+              \begin{pmatrix}
+              1 & 0 & 0 & 0 \\
+              0 & \cos(\phi) & -\sin(\phi) & 0 \\
+              0 & \sin(\phi) & \cos(\phi) & 0 \\
+              0 & 0 & 0 & 1
+              \end{pmatrix}
+              \quad \implies \quad
+              \boxed{R_x(0) = 
+              \begin{pmatrix}
+              1 & 0 & 0 & 0 \\
+              0 & 1 & 0 & 0 \\
+              0 & 0 & 1 & 0 \\
+              0 & 0 & 0 & 1
+              \end{pmatrix}}
+              \end{equation}
+              \begin{equation}
+              R_y(\theta) = 
+              \begin{pmatrix}
+              \cos(\theta) & 0 & \sin(\theta) & 0 \\
+              0 & 1 & 0 & 0 \\
+              -\sin(\theta) & 0 & \cos(\theta) & 0 \\
+              0 & 0 & 0 & 1
+              \end{pmatrix}
+              \quad \implies \quad
+              \boxed{R_y(0) = 
+              \begin{pmatrix}
+              1 & 0 & 0 & 0 \\
+              0 & 1 & 0 & 0 \\
+              0 & 0 & 1 & 0 \\
+              0 & 0 & 0 & 1
+              \end{pmatrix}}
+              \end{equation}
+              Remarquons que \(135^\circ = \frac{3 \pi}{4} \).
+              \begin{equation}
+              R_z(\psi) = 
+              \begin{pmatrix}
+              \cos(\psi) & -\sin(\psi) & 0 & 0 \\
+              \sin(\psi) & \cos(\psi) & 0 & 0 \\
+              0 & 0 & 1 & 0 \\
+              0 & 0 & 0 & 1
+              \end{pmatrix}
+              \quad \implies \quad
+              \boxed{R_z(\frac{3 \pi}{4}) = 
+              \begin{pmatrix}
+              -\frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} & 0 & 0 \\
+              \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} & 0 & 0 \\
+              0 & 0 & 1 & 0 \\
+              0 & 0 & 0 & 1
+              \end{pmatrix}}
+              \end{equation}
+              \item \emph{Calculez la matrice de rotation totale $R = R_z R_y R_x$.} \newline \newline
+              On remarque que \(R_y\) et \(R_x\) correspondent à la matrice identité.
+              \begin{align}
+              R &= R_z R_y R_x \\
+              R &= R_z I_4 I_4 \\ 
+              R &= R_z
+              \end{align}
+              \begin{equation}
+              \boxed{R = 
+              \begin{pmatrix}
+              -\frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} & 0 & 0 \\
+              \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} & 0 & 0 \\
+              0 & 0 & 1 & 0 \\
+              0 & 0 & 0 & 1
+              \end{pmatrix}}
+              \end{equation}
+              \item \emph{Appliquez cette matrice au vecteur $\mathbf{p}$ pour obtenir $\mathbf{p}_1 = R \mathbf{p}$.}
+              \begin{equation}
+              p_1 = \begin{pmatrix}
+              -\frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} & 0 & 0 \\
+              \frac{\sqrt{2}}{2} & -\frac{\sqrt{2}}{2} & 0 & 0 \\
+              0 & 0 & 1 & 0 \\
+              0 & 0 & 0 & 1
+              \end{pmatrix} 
+              \begin{pmatrix}
+              1 \\ 
+              0 \\ 
+              0 \\ 
+              1
+              \end{pmatrix}
+              \end{equation}
+              \begin{equation}
+              \boxed{p_1 = (-\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}, 0)}
+              \end{equation}
           \end{enumerate}
 
     \item \textbf{Approche par quaternion}
           \begin{enumerate}
-              \item Construisez le quaternion unitaire $q = \left[\cos\left(\frac{135^\circ}{2}\right), \sin\left(\frac{135^\circ}{2}\right)\,\mathbf{k}\right]$.
-              \item Écrivez le vecteur initial comme un quaternion pur $p = [0,\,\mathbf{p}]$.
-              \item Calculez $p' = q p q^{-1}$.
-              \item Identifiez la partie vectorielle de $p'$.
+              \item \emph{Construisez le quaternion unitaire $q = \left[\cos\left(\frac{135^\circ}{2}\right), \sin\left(\frac{135^\circ}{2}\right)\,\mathbf{k}\right]$.}
+              \begin{equation}
+              \boxed{q = \cos(\frac{3 \pi}{8}) + \cos(\frac{3 \pi}{8}) k}
+              \end{equation}
+              \item \emph{Écrivez le vecteur initial comme un quaternion pur $p = [0,\,\mathbf{p}]$.}
+              \begin{equation}
+              \boxed{p = i}
+              \end{equation}      
+              \item \emph{Calculez $p' = q p q^{-1}$.} \newline \newline
+              Le produit de deux quaternions \( q_1 = (w_1, v_1) \) et \( q_2 = (w_2, v_2) \) est donné par la formule
+              \( q_1 q_2 = (w_1 w_2 − v_1 \cdot v_2, w_1 v_2 + w_2 v_1 + v_1 \times v_2) \). \newline
+              On commence par appliquer cette formule au produit \(pq\). On obtient :
+              \begin{equation}
+              p q = [0, (\cos(\frac{3 \pi}{8}), \sin(\frac{3 \pi}{8}), 0)]
+              \end{equation}
+              \begin{equation}
+              \boxed{p q = \cos(\frac{3 \pi}{8}) i + \sin(\frac{3 \pi}{8}) j}
+              \end{equation}
+              L'inverse du quaternion \(q\) est donné par la formule \( q^{-1} = \frac{\overline{q}}{\lVert q \rVert^2} \). Or, \(q\) étant un quaternion unitaire, \(\lVert q \rVert = 1\).
+              D'où :
+              \begin{align}
+              q^{-1}  &= \overline{q} \\
+              q^{-1}  &=  \cos(\frac{3 \pi}{8}) - \cos(\frac{3 \pi}{8}) k
+              \end{align}
+              On applique maintenant la formule de multiplication des quaternions au produit de \(p q\) et \(q^{-1}\). On obtient :
+              \begin{equation}
+              p q q^{-1} = [0, (\cos(\frac{3 \pi}{8})^2 - \sin(\frac{3 \pi}{8})^2, 2 \cos(\frac{3 \pi}{8}) \sin(\frac{3 \pi}{8}), 0)]
+              \end{equation}
+              La valeur de \(p' = p q q^{-1} \) est donc :
+              \begin{equation}
+              \boxed{p' = (\cos(\frac{3 \pi}{8})^2 - \sin(\frac{3 \pi}{8})^2) i + 2 \cos(\frac{3 \pi}{8}) \sin(\frac{3 \pi}{8}) j}
+              \end{equation}
+              \item \emph{Identifiez la partie vectorielle de $p'$.} \newline \newline 
+              $p'$ est un quaternion pur dont la partie vectorielle est : \newline
+              \begin{equation}
+              \boxed{v = (\cos(\frac{3 \pi}{8})^2 - \sin(\frac{3 \pi}{8})^2) i + 2 \cos(\frac{3 \pi}{8}) \sin(\frac{3 \pi}{8}) j}
+              \end{equation}
           \end{enumerate}
 
     \item \textbf{Comparaison}
           \begin{enumerate}
-              \item Comparez les résultats $\mathbf{p}_1$ et $\mathbf{p}'$. Sont-ils identiques ?
+              \item \emph{Comparez les résultats $\mathbf{p}_1$ et $\mathbf{p}'$. Sont-ils identiques ?} \newline \newline
+              On remarque que $p'$ contient des identités trigonométriques remarquables de la forme :
+               \begin{equation}
+              2 \cos(a) \sin (b) = \sin(a + b) - \sin(a - b)
+              \end{equation}
+              \begin{equation}
+              \cos^2(a) - \sin^2(b) = \cos(a + b) \cos(a - b)
+              \end{equation}
+              Où \(a = b \) et \(a = \frac{3 \pi}{8} \) \newline 
+              On peut donc écrire ces identités sous la forme :
+              \begin{equation}
+              2 \cos(a) \sin (a) = \sin(2a) - \sin(0)
+              \end{equation}
+              \begin{equation}
+              \cos^2(a) - \sin^2(a) = \cos(2a) \cos(0)
+              \end{equation}
+              En remplaçant $a$ par sa valeur numérique : 
+              \begin{align}
+              2 \cos(\frac{3 \pi}{8}) \sin (\frac{3 \pi}{8}) &= \sin(\frac{3 \pi}{4}) - \sin(0) \\
+              2 \cos(\frac{3 \pi}{8}) \sin (\frac{3 \pi}{8}) &= \frac{\sqrt{2}}{2}
+              \end{align}
+              \begin{align}
+              \cos^2(\frac{3 \pi}{8}) - \sin^2(\frac{3 \pi}{8}) &= \cos(\frac{3 \pi}{4}) \cos(0) \\
+              \cos^2(\frac{3 \pi}{8}) - \sin^2(\frac{3 \pi}{8}) &= -\frac{\sqrt{2}}{2}
+              \end{align}
+              On en déduit :
+              \begin{equation}
+                \boxed{p' = -\frac{\sqrt{2}}{2} i + \frac{\sqrt{2}}{2} j}
+              \end{equation}
+              Ce qui confirme que :
+              \begin{equation}
+                \boxed{p_1 = p'}
+              \end{equation}
               \item Commentez les avantages de l’approche quaternion par rapport à l’approche Euler dans ce cas particulier.
           \end{enumerate}
 \end{enumerate}
