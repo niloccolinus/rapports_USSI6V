@@ -1,0 +1,148 @@
+% !TEX options=-synctex=-1
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{soul}
+\usepackage{graphicx} % pour inclure des images
+\usepackage{animate}
+
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm,
+}
+
+\usepackage{extensionCours}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\title{TP 5 - Introduction aux quaternions}
+\author{Groupe 2 \\* Colin, Henri, Leïla, Loïs}
+
+\begin{document}
+\maketitle
+
+\sectionExercice{Exercice 1 - Algèbre des quaternions}
+\begin{enumerate}
+    \item Soit \( q = 1 + 2i + 3j + 4k \).
+          \begin{enumerate}
+              \item \emph{Calculez la norme \( \lVert q \rVert \).}
+              \begin{equation}
+              \lVert q \rVert = \sqrt{1^2 + 2^2 + 3^2 + 4^2}
+              \end{equation}
+              \begin{equation}
+              \boxed{\lVert q \rVert = \sqrt{30} }
+              \end{equation}
+              \item \emph{Déterminez le conjugué \( \overline{q} \).}
+              \begin{equation}
+              \boxed{\overline{q}  = 1 - 2i - 3j - 4k }
+              \end{equation}
+              \item \emph{Vérifiez que \( q \overline{q} = \lVert q \rVert^2 \).} \newline \newline
+              Le produit de deux quaternions \( q_1 = (w_1, v_1) \) et \( q_2 = (w_2, v_2) \) est donné par la formule
+              \( q_1 q_2 = (w_1 w_2 − v_1 \cdot v_2, w_1 v_2 + w_2 v_1 + v_1 \times v_2) \). \newline
+              Ici, on peut écrire \( q = (w, v) \) et \( \overline{q} = (w, -v) \), avec \( w = 1 \) et \( v = (2, 3, 4) \). \newline
+              En appliquant la formule de multiplication, on trouve : \newline
+              \(q \overline{q} = (w^2 - v \cdot (-v), w (-v) + w v + v \times (-v))\) \newline
+              On calcule :
+              \begin{equation}
+              w^2 = 1
+              \end{equation}
+              \begin{align}
+              v \cdot (-v) &= (2, 3, 4) \cdot (-2, -3, -4) \\
+              v \cdot (-v) &= -29
+              \end{align}
+              \begin{equation}
+              w (-v) + w v = 0
+              \end{equation}
+              \begin{align}
+              v \times (-v) &= (2, 3, 4) \times (-2, -3, -4) \\
+              v \times (-v) &= 0
+              \end{align}
+              D'où              
+              \begin{align}
+               q \overline{q} &= (1 - (-29), 0 ) \\
+               q \overline{q} &= 30
+              \end{align}
+              Donc on a bien :
+              \begin{equation}
+              \boxed{q \overline{q} = \lVert q \rVert^2}
+              \end{equation}
+              \item \emph{En déduire l'inverse \( q^{-1} \).} \newline \newline
+              L'inverse d'un quaternion \(q\) est donné par la formule \( q^{-1} = \frac{\overline{q}}{\lVert q \rVert^2} \).
+              D'où :
+              \begin{equation}
+              \boxed{q^{-1}  = \frac{1}{30} - \frac{2}{30} i - \frac{3}{30} j - \frac{4}{30} k }
+              \end{equation}
+          \end{enumerate}
+    \item \emph{Soit \( q_1 = 1 + i + j \) et \( q_2 = 1 - j + k \).}
+          \begin{enumerate}
+              \item \emph{Calculez \( q_1 q_2 \) et \( q_2 q_1 \).} \newline \newline
+              On applique la formule :
+              \( q_1 q_2 = (w_1 w_2 − v_1 \cdot v_2, w_1 v_2 + w_2 v_1 + v_1 \times v_2) \). \newline
+              Ce qui donne :
+              \begin{equation}
+              q_1 q_2 = (2, (2, -1, 0))
+              \end{equation}
+              \begin{equation}
+              \boxed{q_1 q_2 = 2 + 2 i - j}
+              \end{equation}
+              De même on calcule :
+              \( q_2 q_1 = (w_1 w_2 − v_2 \cdot v_1, w_1 v_2 + w_2 v_1 + v_2 \times v_1) \). \newline
+              Ce qui donne :
+              \begin{equation}
+              q_2 q_1 = (2, (0, 1, 2))
+              \end{equation}
+              \begin{equation}
+              \boxed{q_2 q_1 = 2 + j + k}
+              \end{equation}
+              \item \emph{Vérifiez que la multiplication des quaternions n’est pas commutative.} \newline \newline
+              \(q_1 q_2 \neq q_2 q_1\), donc la multiplication des quaternions n'est pas commutative
+          \end{enumerate}
+\end{enumerate}
+
+
+\sectionExercice{Modification d'angle}
+
+On souhaite effectuer une rotation de $135^\circ$ autour de l’axe $z$. On considère un vecteur initial $\mathbf{p} = (1, 0, 0)$.
+
+\begin{enumerate}
+    \item \textbf{Approche par angles d’Euler}
+
+          On encode cette rotation par les angles d’Euler $(\phi, \theta, \psi) = (0^\circ, 0^\circ, 135^\circ)$ selon l’ordre $ZYX$.
+          \begin{enumerate}
+              \item \emph{Écrivez les matrices élémentaires $R_x(\phi)$, $R_y(\theta)$ et $R_z(\psi)$.}
+              \item Calculez la matrice de rotation totale $R = R_z R_y R_x$.
+              \item Appliquez cette matrice au vecteur $\mathbf{p}$ pour obtenir $\mathbf{p}_1 = R \mathbf{p}$.
+          \end{enumerate}
+
+    \item \textbf{Approche par quaternion}
+          \begin{enumerate}
+              \item Construisez le quaternion unitaire $q = \left[\cos\left(\frac{135^\circ}{2}\right), \sin\left(\frac{135^\circ}{2}\right)\,\mathbf{k}\right]$.
+              \item Écrivez le vecteur initial comme un quaternion pur $p = [0,\,\mathbf{p}]$.
+              \item Calculez $p' = q p q^{-1}$.
+              \item Identifiez la partie vectorielle de $p'$.
+          \end{enumerate}
+
+    \item \textbf{Comparaison}
+          \begin{enumerate}
+              \item Comparez les résultats $\mathbf{p}_1$ et $\mathbf{p}'$. Sont-ils identiques ?
+              \item Commentez les avantages de l’approche quaternion par rapport à l’approche Euler dans ce cas particulier.
+          \end{enumerate}
+\end{enumerate}
+
+
+\sectionExercice{Implémentation Quaternion}
+\begin{enumerate}
+    \item Implémenter une classe quaternion.
+    \item Implémenter des fonctions pour manipuler vos objects avec des quaternions.
+    \item Faites tourner un cube avec vos fonctions de quaternions.
+    \item Afficher un avion dans votre moteur\footnote{Un avion de développeur donc 3 cubes devraient suffire.}.
+\end{enumerate}
+
+
+\end{document}
