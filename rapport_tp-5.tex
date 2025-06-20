@@ -307,6 +307,21 @@ On souhaite effectuer une rotation de $135^\circ$ autour de l’axe $z$. On cons
     De plus, pour manipuler nos \texttt{GameObjects} avec des quaternions, nous avons ajouté la méthode \texttt{rotate\_quaternion} à la classe \texttt{transform}. Cette méthode fait appel à \texttt{Quaternion.to\_rotation\_matrix} pour modifier la matrice de transformation associée à un objet.
 
     \item \emph{Faites tourner un cube avec vos fonctions de quaternions.}
+
+    Nous avons mis à jour le pipeline de rendu du TP4 pour faire tourner le cube affiché précédemment. Pour ce faire, nous utilisons la méthode  \texttt{cube.transform.rotate\_quaternion()} pour appliquer un rotation à notre GameObject \texttt{cube}. L'angle de rotation est incrémenté à chaque frame.
+
+    \begin{figure}[h]
+    \centering
+    \animategraphics[autoplay, loop, width=150px, controls]{24}{illustrations/rotate-cube/rotate-cube-}{1}{147}
+    \caption{Rotation d'un cube avec des quaternions.}
+    \label{fig:cube}
+    \end{figure}
+
+    Le module \texttt{Renderer}, qui utilise la librairie pygame, permet d'afficher le cube et de mettre à jour sa rotation, en le redessinant à chaque itération.
+    Le code de résolution de cet exercice est contenu dans le fichier \texttt{tp\_4\_rendercube.py}, situé dans le dossier \texttt{geometry\_engine\_executables}.
+    
+    Pour exécuter ce programme dans \textbf{Sublime Text}, presser \texttt{Ctrl + Shift + B}, puis sélectionner la commande \texttt{tp\_4\_rendercube}.
+
     \item \emph{Afficher un avion dans votre moteur\footnote{Un avion de développeur donc 3 cubes devraient suffire.}.}
 \end{enumerate}
 
