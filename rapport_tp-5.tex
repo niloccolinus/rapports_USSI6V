@@ -288,10 +288,26 @@ On souhaite effectuer une rotation de $135^\circ$ autour de l’axe $z$. On cons
 
 \sectionExercice{Implémentation Quaternion}
 \begin{enumerate}
-    \item Implémenter une classe quaternion.
-    \item Implémenter des fonctions pour manipuler vos objects avec des quaternions.
-    \item Faites tourner un cube avec vos fonctions de quaternions.
-    \item Afficher un avion dans votre moteur\footnote{Un avion de développeur donc 3 cubes devraient suffire.}.
+    \item \emph{Implémenter une classe quaternion.}
+
+    Pour utiliser les quaternions dans notre pipeline de rendu, nous avons implémenté une classe \texttt{Quaternion} représentant un quaternion défini par sa partie scalaire $w$ et les coordonnées de sa partie vectorielle \((x, y, z)\). 
+    
+    Cette classe possède des méthodes permettant de réaliser les opérations de base sur les quaternions : multiplication (\texttt{prod}), addition (\texttt{add}), calcul de la norme (\texttt{norm}), du conjugué (\texttt{conjugate}) et de l'inverse (\texttt{inverse}).
+    Cette nouvelle classe a été ajoutée à notre bibliothèque Mathy dans \texttt{geometry\_engine\_librairie}.
+
+    \item \emph{Implémenter des fonctions pour manipuler vos objects avec des quaternions.}
+
+    Pour calculer des rotations avec des quaternions, nous avons ajouté plusieurs méthodes à la classe \texttt{Quaternion} :
+    \begin{itemize}
+    \item La méthode \texttt{euler\_to\_quaternion} permet de convertir une rotation exprimée selon les angles d'Euler en quaternion.
+    \item La méthode \texttt{to\_euler} permet de convertir une rotation exprimée par un quaternion en angles d'Euler.
+    \item La méthode \texttt{to\_rotation\_matrix} permet d'obtenir une matrice de rotation à partir d'un quaternion.
+    \end{itemize}
+
+    De plus, pour manipuler nos \texttt{GameObjects} avec des quaternions, nous avons ajouté la méthode \texttt{rotate\_quaternion} à la classe \texttt{transform}. Cette méthode fait appel à \texttt{Quaternion.to\_rotation\_matrix} pour modifier la matrice de transformation associée à un objet.
+
+    \item \emph{Faites tourner un cube avec vos fonctions de quaternions.}
+    \item \emph{Afficher un avion dans votre moteur\footnote{Un avion de développeur donc 3 cubes devraient suffire.}.}
 \end{enumerate}
 
 
