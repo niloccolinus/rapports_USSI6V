@@ -13,8 +13,10 @@ Le nom des fichiers suit la convention suivante : `rapport_tp-<numéro>.tex`.
 - `rapport_tp-1.tex` : Rapport du TP 1 – algèbre linéaire et plan complexe.
 - `rapport_tp-2.tex` : Rapport du TP 2 – géométrie classique et triangulation de Delaunay.
 - `rapport_tp-3.tex` : Rapport du TP 3 – similitudes.
-    - Note : Le rapport du TP 3 contient une figure animée. Pour voir l'animation, il suffit d'ouvrir le fichier PDF généré à partir du fichier .tex avc un lecteur PDF compatible, tel qu'Adobe Acrobat Reader. 
+    - Note : Le rapport du TP 3 contient une figure animée. Pour voir l'animation, il suffit d'ouvrir le fichier PDF généré à partir du fichier .tex avec un lecteur PDF compatible, tel qu'Adobe Acrobat Reader. 
 - `rapport_tp-4.tex` : Rapport du TP 4 – espace.
+- `rapport_tp-5.tex` : Rapport du TP 5 – introduction aux quaternions.
+    - Note : Le rapport du TP 5 contient une figure animée. Pour voir l'animation, il suffit d'ouvrir le fichier PDF généré à partir du fichier .tex avec un lecteur PDF compatible, tel qu'Adobe Acrobat Reader.
 
 ## Comment lancer les fichiers LaTeX
 
