@@ -16,7 +16,7 @@ Le nom des fichiers suit la convention suivante : `rapport_tp-<numéro>.tex`.
     - Note : Le rapport du TP 3 contient une figure animée. Pour voir l'animation, il suffit d'ouvrir le fichier PDF généré à partir du fichier .tex avec un lecteur PDF compatible, tel qu'Adobe Acrobat Reader. 
 - `rapport_tp-4.tex` : Rapport du TP 4 – espace.
 - `rapport_tp-5.tex` : Rapport du TP 5 – introduction aux quaternions.
-    - Note : Le rapport du TP 5 contient une figure animée. Pour voir l'animation, il suffit d'ouvrir le fichier PDF généré à partir du fichier .tex avec un lecteur PDF compatible, tel qu'Adobe Acrobat Reader.
+    - Note : Le rapport du TP 5 contient des figures animées. Pour voir les animations, il suffit d'ouvrir le fichier PDF généré à partir du fichier .tex avec un lecteur PDF compatible, tel qu'Adobe Acrobat Reader.
 
 ## Comment lancer les fichiers LaTeX
 
