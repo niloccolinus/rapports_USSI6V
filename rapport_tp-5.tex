@@ -317,12 +317,24 @@ On souhaite effectuer une rotation de $135^\circ$ autour de l’axe $z$. On cons
     \label{fig:cube}
     \end{figure}
 
-    Le module \texttt{Renderer}, qui utilise la librairie pygame, permet d'afficher le cube et de mettre à jour sa rotation, en le redessinant à chaque itération.
+    La classe \texttt{Renderer}, qui utilise la librairie pygame, permet d'afficher le cube et de mettre à jour sa rotation, en le redessinant à chaque itération.
     Le code de résolution de cet exercice est contenu dans le fichier \texttt{tp\_4\_rendercube.py}, situé dans le dossier \texttt{geometry\_engine\_executables}.
     
     Pour exécuter ce programme dans \textbf{Sublime Text}, presser \texttt{Ctrl + Shift + B}, puis sélectionner la commande \texttt{tp\_4\_rendercube}.
 
     \item \emph{Afficher un avion dans votre moteur\footnote{Un avion de développeur donc 3 cubes devraient suffire.}.}
+
+    Nous avons modélisé un avion simplifié sur Blender, puis nous avons exporté le maillage 3D obtenu. La classe \texttt{Airplane} contient les informations de ce maillage : les sommets des faces triangulaires qui forment l'objet, ainsi que les indices des sommets.
+    Enfin, nous avons repris notre pipeline de rendu, que nous avons adapté pour afficher un \texttt{GameObject} de type \texttt{Airplane}.
+
+    \begin{figure}[h]
+    \centering
+    \animategraphics[autoplay, loop, width=200px, controls]{24}{illustrations/airplane-frames/airplane-}{1}{288}
+    \caption{Modélisation d'un avion.}
+    \label{fig:avion}
+    \end{figure}
+
+    Le code de résolution de cet exercice est contenu dans le fichier \texttt{tp\_5\_airplane.py}, situé dans le dossier \texttt{geometry\_engine\_executables}. Pour exécuter ce programme dans \textbf{Sublime Text}, presser \texttt{Ctrl + Shift + B}, puis sélectionner la commande \texttt{tp\_5\_airplane}.
 \end{enumerate}
 
 
