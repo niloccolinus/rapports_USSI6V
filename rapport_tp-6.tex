@@ -1,0 +1,281 @@
+% !TEX options=-synctex=-1
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{soul}
+\usepackage{graphicx} % pour inclure des images
+\usepackage{animate}
+
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm,
+}
+
+\usepackage{extensionCours}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\title{TP 6 - Blocage de Cardan et Interpolation}
+\author{Groupe 2 \\* Colin, Henri, Leïla, Loïs}
+
+\begin{document}
+\maketitle
+
+\sectionExercice{Exercice 1 - Référentiel local vs global}
+
+Soit un vecteur \( \mathbf{p} = (1, 0, 0) \). On considère deux rotations successives :
+\begin{itemize}
+  \item une rotation \( \theta = 90^\circ \) autour de \( \mathbf{z} \) dans le repère \textbf{global},
+  \item suivie d’une rotation \( \alpha = 90^\circ \) autour de \( \mathbf{y} \) dans le repère \textbf{local} (lié au vecteur déjà tourné).
+\end{itemize}
+
+\begin{enumerate}
+          \item \emph{Construisez les quaternions \( q_1 \) (rotation autour de \( \mathbf{z} \)) et \( q_2 \) (rotation locale autour de \( \mathbf{y} \)).}
+
+            Le quaternion \( q_1 \) se construit par la combinaison des trois quaternions élémentaires :
+
+            \[
+              q_{x1}(0) = (1, 0i) \newline
+            \]
+            \[
+              q_{y1}(0) = (1, 0j) \newline  
+            \]
+            \[ 
+              q_{z1}(\theta) 
+              = \left(cos \left( \frac{\theta}{2} \right), sin \left(\frac{\theta}{2} \right)k\right) 
+              = \left(cos \left( \frac{\pi}{4} \right), sin \left(\frac{\pi}{4} \right)k\right) \newline 
+              = \left( \frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}k \right) 
+            \]
+
+            On trouve :
+
+            \[
+              q_1 = q_{z1}(\theta) q_{y1}(0) q_{x1}(0) = \boxed{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}k}
+            \]
+
+            Le quaternion \( q_2 \) se construit par la combinaison des trois quaternions élémentaires :
+
+            \[
+              q_{x2}(0) = (1, 0i) \newline
+            \]
+            \[ 
+              q_{y2}(\alpha) 
+              = \left(cos \left( \frac{\alpha}{2} \right), sin \left(\frac{\alpha}{2} \right)j\right) 
+              = \left(cos \left( \frac{\pi}{4} \right), sin \left(\frac{\pi}{4} \right)j\right) \newline 
+              = \left( \frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}j \right) 
+            \]
+            \[
+              q_{z2}(0) = (1, 0k) \newline  
+            \]
+
+            On trouve :
+
+            \[
+              q_1 = q_{z2}(0) q_{y2}(\alpha) q_{x2}(0) = \boxed{\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}j}
+            \]
+
+          \newpage \item \emph{Donnez le quaternion global \( q_{\text{final}} \) à appliquer sur \( \mathbf{p} \), en respectant l’ordre des référentiels.} 
+
+            La rotation globale \( q_1 \) s'applique en premier, donc on applique la multiplication dans l'ordre :
+
+            \[
+              q_{final} = q_2 q_1
+            \]
+
+            Le produit de deux quaternions \( q_2 = (w_2, v_2) \) et \( q_1 = (w_1, v_1) \) est donné par la formule
+            \( q_2 q_1 = (w_2 w_1 − v_2 \cdot v_1, w_2 v_1 + w_1 v_2 + v_2 \wedge v_1) \). \newline
+
+            On calcule d'abord la partie scalaire (réelle) :
+
+            \[ w_2 w_1 = \frac{\sqrt{2}}{2} \times \frac{\sqrt{2}}{2} = \frac{1}{2}\]
+            \[ v_2 \cdot v_1 = 
+            \begin{pmatrix} 0 \\ \frac{\sqrt{2}}{2} \\ 0 \end{pmatrix}
+            \cdot
+            \begin{pmatrix} 0 \\ 0 \\ \frac{\sqrt{2}}{2} \end{pmatrix}
+            = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+            \]
+
+            La partie scalaire vaut alors :
+
+            \[
+               w_2 w_1 - v_2 \cdot v_1 = \frac{1}{2}
+            \]
+
+            On calcule maintenant la partie vectorielle (imaginaire) :
+
+            \[ w_2 v_1 = \frac{\sqrt{2}}{2} \times \begin{pmatrix} 0 \\ 0 \\ \frac{\sqrt{2}}{2} \end{pmatrix}
+            = \begin{pmatrix} 0 \\ 0 \\ \frac{1}{2} \end{pmatrix} \]
+            \[ w_1 v_2 = \frac{\sqrt{2}}{2} \times \begin{pmatrix} 0 \\ \frac{\sqrt{2}}{2} \\ 0 \end{pmatrix}
+            = \begin{pmatrix} 0 \\ \frac{1}{2} \\ 0 \end{pmatrix} \]
+            \[ v_2 \wedge v_1 
+            = \begin{pmatrix} 0 \\ 0 \\ \frac{\sqrt{2}}{2} \end{pmatrix}
+            \wedge \begin{pmatrix} 0 \\ \frac{\sqrt{2}}{2} \\ 0 \end{pmatrix} 
+            = \begin{pmatrix} \frac{1}{2} \\ 0 \\ 0 \end{pmatrix}
+            \]
+
+            La partie vectorielle vaut alors :
+
+            \[ w_2 v_1 + w_1 v_2 + v_2 \wedge v_1 = 
+              \begin{pmatrix} 0 \\ 0 \\ \frac{1}{2} \end{pmatrix} + 
+              \begin{pmatrix} 0 \\ \frac{1}{2} \\ 0 \end{pmatrix} + 
+              \begin{pmatrix} \frac{1}{2} \\ 0 \\ 0 \end{pmatrix} = 
+              \begin{pmatrix} \frac{1}{2} \\ \frac{1}{2} \\ \frac{1}{2} \end{pmatrix}
+            \]
+
+            Le quaternion \( q_{final} \) vaut donc :
+
+            \[ \boxed{q_{final} = \frac{1}{2} + \frac{1}{2}i + \frac{1}{2}j + \frac{1}{2}k} \]
+              
+          \item \emph{Calculez \( p' = q_{\text{final}}\,p\,q_{\text{final}}^{-1} \).}
+
+            On calcule d'abord l'inverse :
+
+            \[ q_{\text{final}}^{-1} = \frac{\overline{q_{final}}}{{\lVert q \rVert}^2} \]
+
+            \newpage où
+
+            \[ \overline{q_{final}} = \frac{1}{2} - \frac{1}{2}i - \frac{1}{2}j - \frac{1}{2}k \]
+
+            et 
+
+            \[ {\lVert q \rVert}^2 = \frac{1}{2}^2 + \frac{1}{2}^2 + \frac{1}{2}^2 + \frac{1}{2}^2 = 1 \]
+
+            Donc :
+
+            \[ q_{\text{final}}^{-1} = \frac{1}{2} - \frac{1}{2}i - \frac{1}{2}j - \frac{1}{2}k \]
+
+            On calcule ensuite \(q_{final} \times p\).
+
+            Le vecteur \( p \) peut s'écrire sous la forme d'un quaternion :
+
+            \[ p_q = 0 + 1i + 0j + 0k = i \]
+
+            \[ 
+              q_{\text{final}} \times p_q = 
+              \left(  \frac{1}{2} + \frac{1}{2}i - \frac{1}{2}j - \frac{1}{2}k \right) \times i
+              = -\frac{1}{2} + \frac{1}{2}i + \frac{1}{2}j - \frac{1}{2}k
+            \]
+
+            On peut maintenant calculer \( p' \). On note :
+
+            \[ p' = q_a q_b \]
+
+            où :
+
+            \[ q_a = q_{\text{final}} \times p_q = (w_a, v_a) \] 
+
+
+            et 
+
+            \[ q_b = q_{\text{final}}^{-1} = (w_b, v_b) \]
+
+            La multiplication s'écrit :
+
+            \[ q_a q_b = (w_a w_b - v_a \cdot v_b, w_b v_a + w_a v_b + v_a \wedge v_b) \]
+
+            On calcule d'abord la partie scalaire :
+
+            \[ w_a w_b = -\frac{1}{2} \times \frac{1}{2} = -\frac{1}{4} \]
+
+            \[ 
+              v_a \cdot v_b =
+              \begin{pmatrix} \frac{1}{2} \\ \frac{1}{2} \\ -\frac{1}{2} \end{pmatrix} \cdot
+              \begin{pmatrix} -\frac{1}{2} \\ -\frac{1}{2} \\ -\frac{1}{2} \end{pmatrix} =
+              \begin{pmatrix} -\frac{1}{4} \\ -\frac{1}{4} \\ \frac{1}{4} \end{pmatrix}
+            \]
+
+            La partie scalaire vaut :
+
+            \[ 
+              w_a w_b - v_a \cdot v_b =
+              -\frac{1}{4} - \left( -\frac{1}{4} -\frac{1}{4} + \frac{1}{4} \right) 
+              = 0
+            \]
+
+            \newpage On calcule maintenant la partie vectorielle :
+
+            \[ 
+              w_a v_b = -\frac{1}{2} \times \left( -\frac{1}{2}, -\frac{1}{2}, -\frac{1}{2} \right) 
+              = \left( \frac{1}{4}, \frac{1}{4}, \frac{1}{4} \right) 
+            \]
+
+            \[ 
+              w_b v_a = \frac{1}{2} \times \left( \frac{1}{2}, \frac{1}{2}, -\frac{1}{2} \right) 
+              = \left( \frac{1}{4}, \frac{1}{4}, -\frac{1}{4} \right) 
+            \]
+
+            \[
+              v_a \wedge v_b = 
+              \begin{pmatrix} \frac{1}{2} \\ \frac{1}{2} \\ -\frac{1}{2} \end{pmatrix} 
+              \wedge 
+              \begin{pmatrix} -\frac{1}{2} \\ -\frac{1}{2} \\ -\frac{1}{2} \end{pmatrix} 
+              = 
+              \begin{pmatrix} -\frac{1}{2} \\ \frac{1}{2} \\ 0 \end{pmatrix}
+            \]
+
+            La partie vectorielle vaut :
+
+            \[
+               w_a v_b + w_b v_a + v_a \wedge v_b = 
+              \begin{pmatrix} \frac{1}{4} \\ \frac{1}{4} \\ \frac{1}{4} \end{pmatrix} +
+              \begin{pmatrix} \frac{1}{4} \\ \frac{1}{4} \\ -\frac{1}{4} \end{pmatrix} +
+              \begin{pmatrix} -\frac{1}{2} \\ \frac{1}{2} \\ 0 \end{pmatrix} =
+              \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}
+            \]
+
+            Le quaternion \( p' \) vaut donc :
+
+            \[ p' = 0 + 0i + 1j + 0k = \boxed{j} \] 
+
+
+          \item \emph{Donnez les coordonnées finales du vecteur tourné.}
+
+            Les coordonnées finales sont : \[ (0, 1, 0) \]
+
+          \item \emph{Que se passe-t-il si les deux rotations sont appliquées dans le même repère (global ou local uniquement) ?}
+
+          Au lieu de construire deux quaternions \( q_1 \) et \( q_2 \), on construit un seul quaternion global avec les trois quaternions élémentaires :
+
+            \[
+              q_{x}(0) = (1, 0i) \newline
+            \]
+            \[ 
+              q_{y}(\alpha) 
+              = \left(cos \left( \frac{\alpha}{2} \right), sin \left(\frac{\alpha}{2} \right)j\right) 
+              = \left( \frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}j \right) 
+            \]
+            \[ 
+              q_{z}(\theta) 
+              = \left(cos \left( \frac{\theta}{2} \right), sin \left(\frac{\theta}{2} \right)k\right) 
+              = \left( \frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}k \right) 
+            \]
+
+            \[ q_{global} = q_{z}(\theta) q_{y}(\alpha) q_{x}(0) \]
+
+            Avec la même méthode de multiplication utilisée précédemment on trouve :
+
+            \[ q_{global} = \boxed{\frac{1}{2} + \frac{1}{2}i + \frac{1}{2}j + \frac{1}{2}k} \]
+
+            On constate que \(q_{global} = q_{final}\). Cela montre que la composition d'une rotation globale suivie d'une rotation locale calculée avec \(q_{final}\) peut aussi s'exprimer comme une unique rotation dans le repère global (ici \(q_{global}\)).
+
+          \newpage \item \emph{Que remarque-t-on si l’on inverse l’ordre de multiplication \( q_1 \cdot q_2 \) au lieu de \( q_2 \cdot q_1 \) ?}
+
+            En calculant \(q_1 q_2\) avec la méthode précédente on trouve :
+
+            \[
+              q_1 q_2 = \boxed{\frac{1}{2} -\frac{1}{2}i + \frac{1}{2}j + \frac{1}{2}k}
+            \]
+
+            On remarque que \(q_1 q_2 \neq q_2 q_1\). Cela montre que l'ordre de multiplication de deux quaternions n'est pas commutatif.
+            Ainsi, si l’on décide d’appliquer une rotation locale avant la rotation globale, alors on ne peut plus regrouper ces deux rotations en un unique quaternion exprimé dans le repère global. 
+
+
+\end{enumerate}
+
+\end{document}
