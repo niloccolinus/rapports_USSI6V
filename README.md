@@ -17,6 +17,7 @@ Le nom des fichiers suit la convention suivante : `rapport_tp-<numéro>.tex`.
 - `rapport_tp-4.tex` : Rapport du TP 4 – espace.
 - `rapport_tp-5.tex` : Rapport du TP 5 – introduction aux quaternions.
     - Note : Le rapport du TP 5 contient des figures animées. Pour voir les animations, il suffit d'ouvrir le fichier PDF généré à partir du fichier .tex avec un lecteur PDF compatible, tel qu'Adobe Acrobat Reader.
+- `rapport_tp-6.tex` : Rapport du TP 6 – blocage de cardan et interpolation.
 
 ## Comment lancer les fichiers LaTeX
 
